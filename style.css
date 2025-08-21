@@ -1,0 +1,23 @@
+:root {
+  font-size: 20px
+}
+
+.slidev-layout h1 + p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.5rem;
+  opacity: 1;
+}
+
+.slidev-layout h1 {
+  margin-bottom: 2rem;
+}
+
+.slidev-layout tr {
+  border-color: rgb(115, 115, 115);
+}
+
+/* .slidev-code {
+  font-size: 1.25rem !important;
+  line-height: 1.6rem !important;
+} */
