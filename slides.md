@@ -36,6 +36,30 @@ seoMeta:
 
 # かみくず / kamikuzu
 
+- <VP><template #en>father of twin</template>
+  <template #ja>双子の父</template></VP>
+- <VP><template #en>like Vue</template>
+  <template #ja>Vueが好き</template></VP>
+
+---
+
+# Disclaimer <small>おことわり</small>
+
+- <VP><template #en>Today I talk in English because I want to convey my message to those who have never experienced issues with IME.</template>
+  <template #ja>今日は、IMEで困ったことのない人に伝えるため、英語で話します。</template></VP>
+
+::captions::
+<VCaptions 
+  :en-captions="[
+    'Today I talk in English because',
+    'I want to convey my message to those who have never experienced issues with IME.',
+  ]"
+  :ja-captions="[
+    '今日は英語で話します、なぜなら',
+    'IMEで困ったことのない人に伝えたいからです。',
+  ]"
+/>
+
 ---
 
 # Conclusion <small>結論</small>
@@ -45,86 +69,83 @@ seoMeta:
 <template #ja>IMEユーザーの存在を念頭においてショートカットを設計しましょう</template>
 </VP>
 
-- <VP><template #en>Use <strong>form submit</strong> events, not keyup/keydown, for submissions.</template>
-  <template #ja>送信のためには、keyup/keydownではなく<strong>form submit</strong>イベントを使用しましょう。</template></VP>
-- <VP><template #en>Prefer <strong>native dialog</strong>s for Esc to close.</template>
-  <template #ja>Escキーで閉じる場合は<strong>標準のdialog要素</strong>を使いましょう。</template></VP>
 - <VP><template #en>Check <code>KeyboardEvent.isComposing</code> is false to avoid interfering with text input.</template>
   <template #ja>入力を妨げないよう、<code>KeyboardEvent.isComposing</code>がfalseであることを確認しましょう。</template></VP>
+- <VP><template #en>Use <strong>form submit</strong> events, not keyup/keydown, for submissions.</template>
+  <template #ja>送信のためには、keyup/keydownではなく<strong>form submit</strong>イベントを使用しましょう。</template></VP>
 
 ::captions::
 
-<!-- <VSwitch :unmount="true">
-<template #1>
-<VP v-click.hide>
-  <template #en>Let's talk about why it's important to design shortcuts with IME users in mind.</template>
-  <template #ja>IMEユーザーを意識したショートカット設計がなぜ大切なのか、改めて考えてみましょう。</template>
-</VP>
-</template>
-
-<template #2>
-<VP v-click.hide>
-<template #en>Use <strong>form submit</strong> events, not keyup/keydown, for submissions.</template>
-<template #ja>送信のためには、keyup/keydownではなく<strong>form submit</strong>イベントを使用しましょう。</template>
-</VP>
-</template>
-
-<template #3>
-<VP v-click.hide>
-<template #en>Prefer <strong>native dialog</strong>s for Esc to close.</template>
-<template #ja>Escキーで閉じる場合は<strong>標準のdialog要素</strong>を使いましょう。</template>
-</VP>
-</template>
-
-<template #4>
-<VP v-click.hide>
-<template #en>Check <code>KeyboardEvent.isComposing</code> is false to avoid interfering with text input.</template>
-<template #ja>入力を妨げないよう、<code>KeyboardEvent.isComposing</code>がfalseであることを確認しましょう。</template>
-</VP>
-</template>
-
-<template #5>
-<VP v-click.hide>
-<template #en>This is an accessibility issue not covered by WCAG, but crucial for non-Latin IME users.</template>
-<template #ja>これはWCAGでカバーされていないアクセシビリティ課題ですが、非ラテン文字IMEユーザーにとって非常に重要です。</template>
-</VP>
-</template>
-</VSwitch> -->
+<VCaptions 
+  :en-captions="[
+    'Let\'s talk about why it\'s important to design shortcuts with IME users in mind.',
+    'Check <code>KeyboardEvent.isComposing</code> is false to avoid interfering with text input.',
+    'Use <strong>form submit</strong> events, not keyup/keydown, for submissions.',
+    'This is an accessibility issue not covered by WCAG, but',
+    'crucial for IME users who perform character conversion.'
+  ]"
+  :ja-captions="[
+    'IMEユーザーを意識したショートカット設計がなぜ大切なのか、改めて考えてみましょう。',
+    '入力を妨げないよう、<code>KeyboardEvent.isComposing</code>がfalseであることを確認しましょう。',
+    '送信のためには、keyup/keydownではなく<strong>form submit</strong>イベントを使用しましょう。',
+    'これはWCAGでカバーされていないアクセシビリティ課題ですが、',
+    'IMEで文字変換を行うユーザーにとって非常に重要です。'
+  ]"
+/>
 
 ---
 
 # IME (Input Method Editor)
 
-- <VP><template #en>IME is a tool for entering non-Latin characters.</template>
-  <template #ja>IMEは、非ラテン文字を入力するためのツールです。</template></VP>
-- <VP><template #en>Used for languages like Japanese, Chinese, Korean, etc.</template>
-  <template #ja>日本語、中国語、韓国語などの言語で使用されます。</template></VP>
-- <VP><template #en>Type in alphabet, then select from multiple conversion candidates to confirm.</template>
-  <template #ja>アルファベットで入力後、複数の変換候補から選択して確定します。</template></VP>
+- <VP><template #en>IME is software that supports text input on computers.</template>
+  <template #ja>IMEは、コンピューターでの文字入力をサポートするためのソフトウェアです。</template></VP>
+- <VP><template #en>It offers features like predictive input and character composition.</template>
+  <template #ja>入力補完や、文字の合成などを行います。</template></VP>
+- <VP><template #en>For languages like Japanese and Chinese, it provides kanji <strong>conversion</strong>.</template>
+  <template #ja>とくに日本語、中国語などでは、漢字への<strong>変換</strong>を行います。</template></VP>
 
 ---
 
 # Example (in Japanese) <small>例 (日本語の場合)</small>
 
 <div class="text-center text-2xl">
-<VClicks>
-  <div>
+  <div v-click="2">
     hashi
   </div>
-  <div>
+  <div v-click="2">
     ↓
   </div>
-  <div>
+  <div v-click="4">
     橋 (bridge)
   </div>
-  <div>
+  <div v-click="5">
     箸 (chopsticks)
   </div>
-  <div>
+  <div v-click="6">
     端 (edge)
   </div>
-</VClicks>
 </div>
+
+::captions::
+
+<VCaptions
+  :en-captions="[
+    'I introduce an example of IME user experience.',
+    'type &quot;hashi&quot; in alphabet and hit space key to see the suggestions.',
+    'IME displays a list of candidate characters, like',
+    '橋 (means bridge),',
+    '箸 (means chopsticks),',
+    '端 (means edge)',
+  ]"
+  :ja-captions="[
+    'IMEユーザーの体験例を紹介します。',
+    'アルファベットで hashi と入力し、スペースキーを押すと候補が表示されます。',
+    'IMEは、次のような候補文字のリストを表示します。',
+    '',
+    '',
+    '',
+  ]"
+/>
 
 ---
 
@@ -171,6 +192,7 @@ seoMeta:
 ---
 
 # DEMO <small>デモ</small>
+
 <ShowKeyInput class="absolute right-4 top-4"/>
 
 <div class="flex h-63 items-center">
@@ -188,11 +210,28 @@ seoMeta:
 
 ---
 
+## layout: two-cols-header
+
 # Bad Sample: Chat app "S" <small>悪い例</small>
 
+Type 「しけん」 and try to find the correct Kanji
+
+::left::
+
+<kbd class="text-xl!">Tab</kbd>
+
+- **IME**: Move to next candidate
+- **Search box**: Complete candidate
+
+::right::
+
+<div class="flex justify-center">
+<video src="./public/ServiceS.mp4" controls class="w-100"></video>
+</div>
+
 ---
-layout: two-cols-header
----
+
+## layout: two-cols-header
 
 # Bad Sample: "G"
 
@@ -201,8 +240,9 @@ Try to input 「日本語が途中で送信される」 (means "Japanese text is
 ::left::
 
 <kbd class="text-xl!">Enter</kbd>
-- IME: Confirm
-- Input Element: Submit
+
+- **IME**: Confirm
+- **Input Element**: Submit
 
 ::right::
 
@@ -326,8 +366,6 @@ formElement.addEventListener('submit', (event) => {
 
 - <VP><template #en>Use <strong>form submit</strong> events, not keyup/keydown, for submissions.</template>
   <template #ja>送信のためには、keyup/keydownではなく<strong>form submit</strong>イベントを使用しましょう。</template></VP>
-- <VP><template #en>Prefer <strong>native dialog</strong>s for Esc to close.</template>
-  <template #ja>Escキーで閉じる場合は<strong>標準のdialog要素</strong>を使いましょう。</template></VP>
 - <VP><template #en>Check <code>KeyboardEvent.isComposing</code> is false to avoid interfering with text input.</template>
   <template #ja>入力を妨げないよう、<code>KeyboardEvent.isComposing</code>がfalseであることを確認しましょう。</template></VP>
 
