@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p class="en"><slot name="en" /></p>
-    <p class="ja"><slot name="ja" /></p>
+    <p class="en" lang="en"><slot name="en" /></p>
+    <p class="ja" lang="ja"><slot name="ja" /></p>
   </div>
 </template>
 

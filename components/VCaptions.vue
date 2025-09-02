@@ -1,36 +1,25 @@
-<script setup>
+<script setup lang="ts">
 import VP from './VP.vue'
-import { computed } from 'vue'
+import { computed, toRefs } from 'vue'
 
-const props = defineProps({
-  enCaptions: {
-    type: Array,
-    required: true,
-    validator: (captions) => {
-      return captions.every((caption) => typeof caption === 'string')
-    },
-  },
-  jaCaptions: {
-    type: Array,
-    required: true,
-    validator: (captions) => {
-      return captions.every((caption) => typeof caption === 'string')
-    },
-  },
-})
+const { enCaptions, jaCaptions, at = '+1' } = defineProps<{
+  enCaptions: string[]
+  jaCaptions: string[]
+  at?: string | number
+}>()
 
 const combinedCaptions = computed(() => {
-  const maxLength = Math.max(props.enCaptions.length, props.jaCaptions.length)
+  const maxLength = Math.max(enCaptions.length, jaCaptions.length)
   return Array.from({ length: maxLength }, (_, index) => ({
-    en: props.enCaptions[index] || '',
-    ja: props.jaCaptions[index] || '',
+    en: enCaptions[index] || '',
+    ja: jaCaptions[index] || '',
     slotName: (index + 1).toString(),
   }))
 })
 </script>
 
 <template>
-  <VSwitch>
+  <VSwitch :at>
     <template v-for="(caption, index) in combinedCaptions" :key="index" v-slot:[caption.slotName]>
       <VP>
         <template #en>

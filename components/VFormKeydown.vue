@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, ref, useTemplateRef } from 'vue'
+import { ref, useTemplateRef } from 'vue'
 
 const { type } = defineProps<{ type: 'good' | 'bad' }>()
 
@@ -31,12 +31,18 @@ const submit = async (text) => {
     showSubmitMessage.value = false
   }, 800)
 }
+
+const blur = (e: KeyboardEvent) => {
+  if (e.target === inputRef.value) {
+    inputRef.value!.blur()
+  }
+}
 </script>
 
 <template>
   <div class="flex items-center gap-2">
-    <input class="input" type="text" ref="input" @keydown.enter.capture="handleEnter" />
-    <div class="relative h-6 w-40">
+    <input class="input" type="text" ref="input" @keyup.enter.capture="handleEnter" @keydown.escape="blur" />
+    <div class="relative h-6 w-60">
       <Transition name="slide-up">
         <div v-if="showSubmitMessage" class="absolute inset-0 m-0">
           Submitted Value:

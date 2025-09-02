@@ -1,32 +1,35 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, useTemplateRef } from 'vue'
 
-const submitCount = ref(0)
+const inputRef = useTemplateRef('input')
 const showSubmitMessage = ref(false)
+const submittedValue = ref('')
 let timeoutId: ReturnType<typeof setTimeout> | null = null
 
-const handleEnter = (e: Event) => {
-  submitCount.value++
+const submit = async (e: Event) => {
+  submittedValue.value = inputRef.value!.value
   showSubmitMessage.value = true
-
+  setTimeout(() => {
+    inputRef.value!.value = ''
+  }, 0)
   if (timeoutId) {
     clearTimeout(timeoutId)
   }
 
   timeoutId = setTimeout(() => {
     showSubmitMessage.value = false
-  }, 800)
+  }, 1600)
 }
 </script>
 
 <template>
-  <form class="flex items-center gap-2" @submit.prevent="handleEnter">
-    <input class="input" type="text" />
-    <div class="relative h-6 w-40">
+  <form class="flex items-center gap-2" @submit.prevent="submit">
+    <input class="input" type="text" ref="input"/>
+    <div class="relative h-6 w-60">
       <Transition name="slide-up">
         <div v-if="showSubmitMessage" class="absolute inset-0 m-0">
-          Submit Count:
-          <span class="font-bold">{{ submitCount }}</span>
+          Submitted Value:
+          <span class="font-bold">{{ submittedValue }}</span>
         </div>
       </Transition>
     </div>
