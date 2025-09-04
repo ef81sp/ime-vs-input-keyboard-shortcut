@@ -462,7 +462,7 @@ layout: two-cols-header
 layout: two-cols-header
 ---
 
-# W3C Spec VS Safari
+# W3C Spec v.s. Safari
 
 ::left::
 
@@ -470,16 +470,16 @@ layout: two-cols-header
 
 <div class="flex justify-center">
 
-| No. | Event Type        | KeyboardEvent<br>.isComposing |
-| --- | ----------------- | ----------------------------- |
-| 1   | keydown           | false                         |
-| 2   | compositionstart  |                               |
-| 3   | compositionupdate |                               |
-| 4   | keyup             | true                          |
-| ... | —                 | —                             |
-| 5   | keydown           | true                          |
-| 6   | compositionend    |                               |
-| 7   | keyup             | false                         |
+| No. | Event Type                                               | KeyboardEvent<br>.isComposing               |
+| --- | -------------------------------------------------------- | ------------------------------------------- |
+| 1   | <span v-mark.delay1000.highlight.pink="1">keydown</span> | false                                       |
+| 2   | <span v-mark.highlight.lime="1">compositionstart</span>  |                                             |
+| 3   | <span v-mark.highlight.lime="1">compositionupdate</span> |                                             |
+| 4   | keyup                                                    | true                                        |
+| ... | —                                                        | —                                           |
+| 5   | <span v-mark.delay1000.highlight.pink="1">keydown</span> | <span v-mark.highlight.pink="2">true</span> |
+| 6   | <span v-mark.highlight.lime="1">compositionend</span>    |                                             |
+| 7   | keyup                                                    | false                                       |
 
 </div>
 
@@ -489,32 +489,37 @@ layout: two-cols-header
 
 <div class="flex justify-center">
 
-| No. | Event Type        | KeyboardEvent<br>.isComposing |
-| --- | ----------------- | ----------------------------- |
-| 1   | compositionstart  |                               |
-| 2   | compositionupdate |                               |
-| 3   | keydown           | true                          |
-| 4   | keyup             | true                          |
-| ... | —                 | —                             |
-| 5   | compositionend    |                               |
-| 6   | keydown           | false                         |
-| 7   | keyup             | false                         |
+| No. | Event Type                                               | KeyboardEvent<br>.isComposing                |
+| --- | -------------------------------------------------------- | -------------------------------------------- |
+| 1   | <span v-mark.highlight.lime="4">compositionstart</span>  |                                              |
+| 2   | <span v-mark.highlight.lime="4">compositionupdate</span> |                                              |
+| 3   | <span v-mark.delay1000.highlight.pink="4">keydown</span> | true                                         |
+| 4   | keyup                                                    | true                                         |
+| ... | —                                                        | —                                            |
+| 5   | <span v-mark.highlight.lime="4">compositionend</span>    |                                              |
+| 6   | <span v-mark.delay1000.highlight.pink="4">keydown</span> | <span v-mark.highlight.pink="5">false</span> |
+| 7   | keyup                                                    | false                                        |
 
 </div>
 
 ::captions::
+
 <VCaptions
   :en-captions="[
-    'In W3C specifications, the behavior of <code>KeyboardEvent.isComposing</code> is well-defined.',
-    'It is <code>true</code> while the IME is composing text.',
-    'So, in keyboard handlers, check this flag and skip processing when it\'s <code>true</code>.',
-    'Very easy.'
+    'In W3C specifications\, composition events should be fired after keydown events.',
+    'Therefore, the final keydown event\'s <code>isComposing</code> will be <code>true</code>.',
+    'This applies to the <kbd>Enter</kbd> key.',
+    'However, in Safari, composition events are fired before keydown events.',
+    'So, the last keydown event\'s <code>isComposing</code> becomes <code>false</code>.',
+    'This is the cause of the problem.'
   ]"
   :ja-captions="[
-    'これを解決してくれるのが、<code>KeyboardEvent.isComposing</code> です。',
-    'これはIMEの文字変換中、trueになります。',
-    'ですので、ハンドラーでこれを見て、早期リターンすればよいのです。',
-    'ね、簡単でしょう？'
+    'W3C仕様では、Compositionイベントはkeydownイベントの後に発火する必要があります。',
+    'したがって、最後のkeydownイベントの<code>isComposing</code>は<code>true</code>になります。',
+    'Enterキーがこれに該当します。',
+    'しかし、Safariでは、Compositionイベントはkeydownイベントの前に発火します。',
+    'そのため、最後のkeydownイベントの<code>isComposing</code>は<code>false</code>になります。',
+    'これが問題の原因です。'
   ]"
 />
 
@@ -537,6 +542,131 @@ th {
   font-size: 0.7rem;
 }
 </style>
+
+---
+
+# MDN says...
+
+[Element: Keydown event | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event)
+
+> <strong>Note:</strong> <code>compositionstart</code> may fire <em>after</em> <code>keydown</code> when typing the first character that opens up the IME, and <code>compositionend</code> may fire <em>before</em> <code>keydown</code> when typing the last character that closes the IME. In these cases, <code>isComposing</code> is false even when the event is part of composition. However, <span v-mark.highlight.yellow="{at:1,multiline:true}"><a href="/en-US/docs/Web/API/KeyboardEvent/keyCode"><code>KeyboardEvent.keyCode</code></a> is still <code>229</code> in these cases, so it's still advisable to check <code>keyCode</code> as well, although it's deprecated</span>.
+
+<div class="h-2"/>
+
+> <strong>メモ:</strong> IME を開くための最初の文字を入力したときに、 <code>compositionstart</code> が <code>keydown</code> の後に発行されることがあります。また、 IME を閉じられり最後の文字を入力したときに、 <code>compositionend</code> が <code>keydown</code> の前に発行されることがあります。これらの場合、イベントが変換の一部であっても、<code>isComposing</code> は false となります。しかし、<span v-mark.highlight.yellow="{at:1,multiline:true}">これらの場合でも <a href="/ja/docs/Web/API/KeyboardEvent/keyCode"><code>KeyboardEvent.keyCode</code></a> は <code>229</code> のままなので、非推奨ではあるものの、やはり <code>keyCode</code> も調べることをお勧めします</span>。
+
+::captions::
+
+<VCaptions
+  :en-captions="[
+  'MDN says check <code>keyCode</code> is <code>229</code>, although it\'s deprecated.'
+  ]"
+  :ja-captions="[
+    'MDNは、非推奨であるものの、<quot>keyCode</quot>が<quot>229</quot>であることを確認するように言っています。'
+  ]"
+/>
+
+<style>
+blockquote {
+  font-size: 0.8rem;
+  & p {
+    line-height: 1.3;
+  }
+}
+
+</style>
+
+---
+
+# Solution 1: check `keyCode` === 229
+
+<div class="[&_pre]:text-4! [&_pre]:lh-5!">
+
+````md magic-move
+```js {*}
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    if (event.isComposing) {
+      return;
+    }
+    submit();
+  }
+});
+```
+
+```js {3|*}
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    if (event.isComposing || event.keyCode === 229) {
+      return;
+    }
+    submit();
+  }
+});
+```
+````
+
+</div>
+
+::captions::
+
+<VCaptions
+  at="1"
+  :en-captions="[
+    'So, the solution 1 is check <code>keyCode</code> is <code>229</code>.',
+    'You may not be comfortable with checking a deprecated parameter,',
+    'but it\'s advisable to do so now.'
+  ]"
+  :ja-captions="[
+    'ということで、解決策1は<code>keyCode</code>が<code>229</code>であることを確認することです。',
+    '非推奨のパラメータを確認することに抵抗があるかもしれませんが、',
+    '今はそうすることをお勧めします。'
+  ]"
+/>
+
+---
+
+# Solution 2: add Meta / Ctrl Key
+
+<div class="[&_pre]:text-4! [&_pre]:lh-5!">
+
+````md magic-move
+```js {*}
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    if (event.isComposing) {
+      return;
+    }
+    submit();
+  }
+});
+```
+
+```js {2|*}
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" && (event.metaKey || event.ctrlKey)) {
+    if (event.isComposing) {
+      return;
+    }
+    submit();
+  }
+});
+```
+````
+</div>
+
+::captions::
+
+<VCaptions
+  at="1"
+  :en-captions="[
+    'The solution 2 is add Meta / Ctrl key to submit.',
+  ]"
+  :ja-captions="[
+    '解決策2はMeta / Ctrlキーを追加して送信することです。',
+    'そもそもEnterキーだけで送信しなければいいという話ですね。',
+  ]"
+/>
 
 ---
 
