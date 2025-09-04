@@ -26,6 +26,15 @@ seoMeta:
   # ogImage: https://cover.sli.dev
 ---
 
+<!--
+Slidevのスライドファイルです。
+自作のコンポーネントを使って、英語と日本語を同時に表示しています。
+`<VP>`: pタグです。`<template #en>`と`<template #ja>`で英語と日本語を切り替えています。
+`<VCaptions>`: 字幕表示用のコンポーネントです。`en-captions`と`ja-captions`で字幕の内容を指定します。Vueの記法の都合で、文章内にクォーテーションや文字参照が入っている場合、エスケープする必要があります。
+
+わたしは日本語がネイティブなので、英語の表現が自然になるように支援してください。
+-->
+
 # IME vs Input Field Shortcuts: Enhancing Text Input Accessibility
 
 かみくず
@@ -302,7 +311,7 @@ layout: two-cols-header
 
 # Bad Sample: "G"
 
-Try to input 「日本語が途中で送信される」 (means "Japanese text is sent halfway through") incrementally.
+Try to input 「<ruby>日本語が/途中で/送信される<rt>Japanese text is sent halfway through</rt></ruby>」 incrementally.
 
 ::left::
 
@@ -313,10 +322,31 @@ Try to input 「日本語が途中で送信される」 (means "Japanese text is
 
 ::right::
 
-<div class="flex justify-center">
-<SlidevVideo v-click autoplay controls>
+<div class="flex justify-center h-52">
+<SlidevVideo v-click autoplay controls class="border-1 border-black">
   <source src="./ServiceG.mp4" type="video/mp4" />
 </SlidevVideo></div>
+
+::captions::
+
+<VCaptions
+  :en-captions="[
+    'This is a very very very very very common issue.',
+    'Try to input 「日本語が途中で送信される」 incrementally.',
+    'When inputting Japanese, it is rare to enter the entire text at once,',
+    'and users often confirm the text little by little as they type.',
+    'Therefore, they frequently press the Enter key in the middle of input,',
+    'which can lead to premature submission.'
+  ]"
+  :ja-captions="[
+    'これはもうほんっとうにめちゃめちゃよくある問題です。',
+    '「日本語が途中で送信される」と少しずつ入力してみます。',
+    '日本語の入力時は、全文を一気に入れることは稀で、',
+    '少しずつ確定しながら入力を進めます。',
+    'そのため、途中でEnterキーを押すことが多く、',
+    'そのときに途中で送信されてしまいます。',
+  ]"
+/>
 
 ---
 layout: two-cols-header
@@ -336,10 +366,30 @@ Type 「しけん」 and try to find the correct Kanji
 ::right::
 
 <div class="flex justify-center">
-<SlidevVideo v-click autoplay controls>
+<SlidevVideo v-click="2" autoplay controls class="border-1 border-black">
   <source src="./ServiceS.mp4" type="video/mp4" />
 </SlidevVideo>
 </div>
+
+::captions::
+
+<VCaptions
+  at="1"
+  :en-captions="[
+    'There are also cases where keys other than the Enter key can cause problems.',
+    'Tab key is used to move to the next candidate in IME,',
+    'but it can also be used to select completion candidates in the app.',
+    'As a result, the app can take precedence ',
+    'and interfere with IME operations.'
+  ]"
+  :ja-captions="[
+    'Enterキー以外にも問題になるケースがあります。',
+    'TabキーはIMEにおいて次の候補に移動するキーですが、',
+    'アプリ側でも検索ワードの補完候補の選択に使われることがあります。',
+    'その結果、アプリ側が勝ってしまって、',
+    'IMEの操作が妨げられてしまいます。',
+  ]"
+/>
 
 ---
 
@@ -445,18 +495,31 @@ layout: two-cols-header
 
 # `isComposing`
 
+[KeyboardEvent: isComposing property | MDN](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/isComposing)
+
 > <VP><template #en>
 >
-> The **`KeyboardEvent.isComposing`** read-only property returns a boolean value indicating if the event is fired within a composition session, i.e., <span v-mark.green="1">after `compositionstart` and before `compositionend`</span>.
+> The **`KeyboardEvent.isComposing`** read-only property returns a boolean value indicating if the event is fired within a composition session, i.e., <span v-mark.green="2">after `compositionstart` and before `compositionend`</span>.
 >
 > </template>
 > <template #ja>
 >
-> **`KeyboardEvent.isComposing`** は読み取り専用プロパティで、イベントが変換セッションの途中、すなわち <span v-mark.green="1">`compositionstart` の後かつ `compositionend` の前</span>に発行されたことを示す論理値を返します。
+> **`KeyboardEvent.isComposing`** は読み取り専用プロパティで、イベントが変換セッションの途中、すなわち <span v-mark.green="2">`compositionstart` の後かつ `compositionend` の前</span>に発行されたことを示す論理値を返します。
 >
 > </template></VP>
 
-[KeyboardEvent: isComposing property | MDN](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/isComposing)
+::captions::
+
+<VCaptions
+  :en-captions="[
+    'Check the specification of isComposing.',
+    'It is true after <code>compositionstart</code> and before <code>compositionend</code>.'
+  ]"
+  :ja-captions="[
+    'isComposingの仕様を確認しておきましょう。',
+    'これは<code>compositionstart</code>の後、<code>compositionend</code>の前でtrueになります。'
+  ]"
+/>
 
 ---
 layout: two-cols-header
@@ -466,7 +529,7 @@ layout: two-cols-header
 
 ::left::
 
-## **W3C Spec**
+## [**W3C Spec**](https://w3c.github.io/uievents/#events-composition-key-events)
 
 <div class="flex justify-center">
 
@@ -506,17 +569,17 @@ layout: two-cols-header
 
 <VCaptions
   :en-captions="[
-    'In W3C specifications\, composition events should be fired after keydown events.',
+    'According to the W3C specification\, composition events should be fired after keydown events.',
     'Therefore, the final keydown event\'s <code>isComposing</code> will be <code>true</code>.',
-    'This applies to the <kbd>Enter</kbd> key.',
-    'However, in Safari, composition events are fired before keydown events.',
-    'So, the last keydown event\'s <code>isComposing</code> becomes <code>false</code>.',
+    'This refers to pressing the <kbd>Enter</kbd> key.',
+    'However, on Safari, composition events are fired before keydown events.',
+    'As a result, the last keydown event\'s <code>isComposing</code> becomes <code>false</code>.',
     'This is the cause of the problem.'
   ]"
   :ja-captions="[
     'W3C仕様では、Compositionイベントはkeydownイベントの後に発火する必要があります。',
     'したがって、最後のkeydownイベントの<code>isComposing</code>は<code>true</code>になります。',
-    'Enterキーがこれに該当します。',
+    'Enterキーの押下がこれに該当します。',
     'しかし、Safariでは、Compositionイベントはkeydownイベントの前に発火します。',
     'そのため、最後のkeydownイベントの<code>isComposing</code>は<code>false</code>になります。',
     'これが問題の原因です。'
@@ -653,6 +716,7 @@ document.addEventListener("keydown", (event) => {
 });
 ```
 ````
+
 </div>
 
 ::captions::
@@ -660,10 +724,11 @@ document.addEventListener("keydown", (event) => {
 <VCaptions
   at="1"
   :en-captions="[
-    'The solution 2 is add Meta / Ctrl key to submit.',
+    'The another solution is add Meta / Ctrl key to submit.',
+    'You don\'t have to rely solely on the Enter key for submission.'
   ]"
   :ja-captions="[
-    '解決策2はMeta / Ctrlキーを追加して送信することです。',
+    '別の解決策は、Meta / Ctrlキーを追加して送信することです。',
     'そもそもEnterキーだけで送信しなければいいという話ですね。',
   ]"
 />
@@ -673,7 +738,7 @@ document.addEventListener("keydown", (event) => {
 # BTW...
 
 <VP>
-  <template #en>Use the <strong>form submit</strong> event for submissions. ( <code>&lt;textarea&gt;</code>? I'm sorry.)</template>
+  <template #en>Use the <strong>form submit</strong> event for submissions. ( <code>&lt;textarea&gt;</code>? I'm sorry...)</template>
   <template #ja>送信には<strong>form submit</strong>イベントを使用しましょう。（<code>&lt;textarea&gt;</code>？すまん……）</template>
 </VP>
 
@@ -692,15 +757,66 @@ formElement.addEventListener("submit", (event) => {
 
 </div>
 
+::captions::
+
+<VCaptions
+  :en-captions="[
+    'By the way, if it is for submission, consider using the form submit event.',
+    'However, for <code>\&\lt;textarea\&\gt;</code>, you cannot submit with the Enter key.',
+    'In that case, you would need to use the keydown event as we discussed earlier.'
+  ]"
+  :ja-captions="[
+    'それはそれとして、それが送信であるなら、form要素のsubmitイベントを使うことも検討すべきです。',
+    'ただし、<code>\&\lt\;textarea&gt;</code>の場合は、Enterキーによる送信はできません。',
+    'その場合は、これまでのお話のように、keydownイベントを使用する必要があるでしょう。'
+  ]"
+/>
+
 ---
 
 # Is this issue covered by WCAG?
 
-<p v-click class="text-9xl text-center h-63 flex justify-center items-center"> NO </p>
+<p v-click="3" class="text-9xl text-center h-63 flex justify-center items-center"> NO </p>
+
+::captions::
+
+<VCaptions
+:en-captions="[
+  'I consider this an accessibility issue.',
+  'Is this issue covered by WCAG?',
+  'The answer is NO.',
+]"
+:ja-captions="[
+  'わたしはこれをアクセシビリティの問題だと考えています。',
+  'この問題はWCAGでカバーされているのでしょうか？',
+  '答えはNOです。',
+]"
+/>
 
 ---
 
 # a11y ∋ WCAG
+
+<!-- タイトルを示すベン図 -->
+
+::captions::
+
+<VCaptions
+:en-captions="[
+  'Of course, WCAG does not cover all accessibility issues.',
+  'This issue arises because it is unknown to implementers.',
+  'There must be other unknown issues like this.',
+  'Therefore, if we are stakeholders, we must raise our voices,',
+  'and developers need to listen to users\' voices.',
+]"
+:ja-captions="[
+  '当然ながら、WCAGがすべてのアクセシビリティ課題をカバーしているわけではありません。',
+  '今回の問題は、実装者にとって未知だから発生しています。',
+  'このような未知の問題は、ほかにも必ずあるはずです。',
+  'ですから、自分たちが当事者であれば、しっかり声を上げなければなりませんし、',
+  '開発者はユーザーの声に耳を傾ける必要があります。',
+]"
+/>
 
 ---
 
@@ -719,8 +835,8 @@ formElement.addEventListener("submit", (event) => {
 ::captions::
 
 ---
-
-## layout: fact
+layout: fact
+---
 
 End
 
