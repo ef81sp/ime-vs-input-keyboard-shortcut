@@ -24,31 +24,55 @@ seoMeta:
   # or generate one from the first slide if not found.
   ogImage: auto
   # ogImage: https://cover.sli.dev
+# LLMへ
+# Slidevのスライドファイルです。
+# 自作のコンポーネントを使って、英語と日本語を同時に表示しています。
+# `<VP>`: pタグです。`<template #en>`と`<template #ja>`で英語と日本語を切り替えています。
+# `<VCaptions>`: 字幕表示用のコンポーネントです。`en-captions`と`ja-captions`で字幕の内容を指定します。Vueの記法の都合で、文章内にクォーテーションや文字参照が入っている場合、エスケープする必要があります。
+
+# わたしは日本語がネイティブなので、英語の表現が自然になるように支援してください。
 ---
 
-<!--
-Slidevのスライドファイルです。
-自作のコンポーネントを使って、英語と日本語を同時に表示しています。
-`<VP>`: pタグです。`<template #en>`と`<template #ja>`で英語と日本語を切り替えています。
-`<VCaptions>`: 字幕表示用のコンポーネントです。`en-captions`と`ja-captions`で字幕の内容を指定します。Vueの記法の都合で、文章内にクォーテーションや文字参照が入っている場合、エスケープする必要があります。
+<div class="h-20" />
 
-わたしは日本語がネイティブなので、英語の表現が自然になるように支援してください。
--->
+# IME vs Input Field Shortcuts: <br> Enhancing Text Input Accessibility
 
-# IME vs Input Field Shortcuts: Enhancing Text Input Accessibility
+<div class="h-12" />
 
-かみくず
+かみくず (@p_craft)
 
 2025.09.21 Frontend Conference Tokyo
 
+<style>
+h1 {
+  font-size: 2.5rem !important;
+  line-height: 3.5rem !important
+}
+
+</style>
+
+---
+layout: two-cols-header
 ---
 
 # かみくず / kamikuzu
+
+::left::
 
 - <VP><template #en>father of twin</template>
   <template #ja>双子の父</template></VP>
 - <VP><template #en>like Vue</template>
   <template #ja>Vueが好き</template></VP>
+
+::right::
+
+<div class="h-80 flex flex-col justify-end items-end">
+
+![](/icon_shinkansen_sugoi_katai_ice.jpg){class="h-60"}
+
+X: [@p_craft](https://x.com/p_craft)
+
+</div>
 
 ---
 
@@ -73,30 +97,30 @@ Slidevのスライドファイルです。
 
 # Conclusion <small>結論</small>
 
-<VP>
-<template #en>Design shortcuts with IME users in mind:</template>
-<template #ja>IMEユーザーの存在を念頭においてショートカットを設計しましょう</template>
+<VP class="mb-3">
+<template #en>IME operations can be hindered by application shortcut keys!</template>
+<template #ja>IMEの操作がアプリのショートカットキーによって妨げられることがあります！</template>
 </VP>
 
-- <VP><template #en>Check <code>KeyboardEvent.isComposing</code> is false to avoid interfering with text input.</template>
-  <template #ja>入力を妨げないよう、<code>KeyboardEvent.isComposing</code>がfalseであることを確認しましょう。</template></VP>
-- <VP><template #en>Use <strong>form submit</strong> events, not keyup/keydown, for submissions.</template>
-  <template #ja>送信のためには、keyup/keydownではなく<strong>form submit</strong>イベントを使用しましょう。</template></VP>
+- <VP><template #en>Check <code>KeyboardEvent.isComposing</code> is <strong>false</strong> to avoid interfering with text input.</template>
+  <template #ja>入力を妨げないよう <code>KeyboardEvent.isComposing</code>が <strong>false</strong> であることを確認しましょう。</template></VP>
+- <VP><template #en>Also check <code>KeyboardEvent.keyCode</code> is <strong>229</strong>.</template>
+  <template #ja><code>KeyboardEvent.keyCode</code> が<strong>229</strong>であることも確認しましょう。</template></VP>
 
 ::captions::
 
 <VCaptions 
   :en-captions="[
-    'Let\'s talk about why it\'s important to design shortcuts with IME users in mind.',
-    'Check <code>KeyboardEvent.isComposing</code> is false to avoid interfering with text input.',
-    'Use <strong>form submit</strong> events, not keyup/keydown, for submissions.',
+    'IME operations can be hindered by application shortcut keys!',
+    'Check <code>KeyboardEvent.isComposing</code> is <strong>false</strong> to avoid interfering with text input.',
+    'Also check <code>KeyboardEvent.keyCode</code> is <strong>229</strong>, although it is deprecated.',
     'This is an accessibility issue not covered by WCAG, but',
     'crucial for IME users who perform character conversion.'
   ]"
   :ja-captions="[
-    'IMEユーザーを意識したショートカット設計がなぜ大切なのか、改めて考えてみましょう。',
-    '入力を妨げないよう、<code>KeyboardEvent.isComposing</code>がfalseであることを確認しましょう。',
-    '送信のためには、keyup/keydownではなく<strong>form submit</strong>イベントを使用しましょう。',
+    'IMEの操作がアプリのショートカットキーによって妨げられることがあります！',
+    '入力を妨げないよう、<code>KeyboardEvent.isComposing</code>が <strong>false</strong> であることを確認しましょう。',
+    'また、非推奨プロパティではありますが、<code>KeyboardEvent.keyCode</code>が<strong>229</strong>であることも確認しましょう。',
     'これはWCAGでカバーされていないアクセシビリティ課題ですが、',
     'IMEで文字変換を行うユーザーにとって非常に重要です。'
   ]"
@@ -112,6 +136,21 @@ Slidevのスライドファイルです。
   <template #ja>入力補完や、文字の合成などを行います。</template></VP>
 - <VP><template #en>For languages like Japanese and Chinese, it provides kanji <strong>conversion</strong>.</template>
   <template #ja>とくに日本語、中国語などでは、漢字への<strong>変換</strong>を行います。</template></VP>
+
+::captions::
+
+<VCaptions
+  :en-captions="[
+    'IME is software that supports text input on computers.',
+    'It offers features like predictive input and character composition.',
+    'For languages like Japanese and Chinese, it provides kanji conversion.'
+  ]"
+  :ja-captions="[
+    'IMEは、コンピューターでの文字入力をサポートするためのソフトウェアです。',
+    '入力補完や、文字の合成などを行います。',
+    'とくに日本語、中国語などでは、漢字への変換を行います。'
+  ]"
+/>
 
 ---
 
@@ -163,13 +202,13 @@ Slidevのスライドファイルです。
 <table v-click="[2, 4]">
   <thead>
     <tr>
-      <th>shortcuts</th>
+      <th class="text-align-center!">shortcuts</th>
       <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th><kbd>Space</kbd></th>
+      <th class="text-align-center!"><kbd>Space</kbd></th>
       <td>
         <VP>
           <template #en>Start conversion</template>
@@ -178,7 +217,7 @@ Slidevのスライドファイルです。
       </td>
     </tr>
     <tr>
-      <th><kbd>Tab</kbd></th>
+      <th class="text-align-center!"><kbd>Tab</kbd></th>
       <td>
         <VP>
           <template #en>Start completion</template>
@@ -192,13 +231,13 @@ Slidevのスライドファイルです。
 <table v-click="4">
   <thead>
     <tr>
-      <th>shortcuts</th>
+      <th class="text-align-center!">shortcuts</th>
       <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th><kbd>Tab</kbd> / <kbd>Space</kbd> / <kbd>↓</kbd></th>
+      <th class="text-align-center!"><span><kbd>Tab</kbd> / <kbd>Space</kbd> / <kbd>↓</kbd></span></th>
       <td>
         <VP>
           <template #en>Move to next candidate</template>
@@ -207,7 +246,7 @@ Slidevのスライドファイルです。
       </td>
     </tr>
     <tr>
-      <th><kbd>Shift</kbd> + <kbd>Tab</kbd> / <kbd>Shift</kbd> + <kbd>Space</kbd> / <kbd>↑</kbd></th>
+      <th class="text-align-center!"><kbd>Shift</kbd> + <kbd>Tab</kbd> / <kbd>Shift</kbd> + <kbd>Space</kbd> / <kbd>↑</kbd></th>
       <td>
         <VP>
           <template #en>Move to previous candidate</template>
@@ -216,7 +255,7 @@ Slidevのスライドファイルです。
       </td>
     </tr>
     <tr>
-      <th><kbd>Enter</kbd></th>
+      <th class="text-align-center!"><kbd>Enter</kbd></th>
       <td>
         <VP>
           <template #en>Confirm selected candidate</template>
@@ -282,6 +321,17 @@ tbody th {
 <template #ja>もしWebアプリのショートカットキーがIMEのショートカットキーと衝突したら……？</template>
 </VP>
 
+::captions::
+
+<VCaptions
+  :en-captions="[
+    'Well, what happens when web app shortcuts conflict with IME shortcuts?',
+  ]"
+  :ja-captions="[
+    'さて、WebアプリのショートカットキーがIMEのショートカットキーと衝突するとどうなるでしょうか？'
+  ]"
+/>
+
 ---
 
 # Bad DEMO
@@ -323,7 +373,7 @@ Try to input 「<ruby>日本語が/途中で/送信される<rt>Japanese text is
 ::right::
 
 <div class="flex justify-center h-52">
-<SlidevVideo v-click autoplay controls class="border-1 border-black">
+<SlidevVideo v-click="2" autoplay controls class="border-1 border-black">
   <source src="./ServiceG.mp4" type="video/mp4" />
 </SlidevVideo></div>
 
@@ -490,6 +540,20 @@ layout: two-cols-header
   <source src="./safari_bug.mp4" type="video/mp4" />
 </SlidevVideo>
 </div>
+
+::captions::
+
+<VCaptions
+  at="1"
+  :en-captions="[
+    'But, unfortunately, Safari has a bug with <code>KeyboardEvent.isComposing</code>.',
+    'When pressing the Enter key to confirm conversion, it becomes false.'
+  ]"
+  :ja-captions="[
+    'しかし、残念ながら、Safariには<code>KeyboardEvent.isComposing</code>にバグがあります。',
+    '変換確定のEnterキーを押したとき、値がfalseになってしまいます。'
+  ]"
+/>
 
 ---
 
@@ -797,7 +861,11 @@ formElement.addEventListener("submit", (event) => {
 
 # a11y ∋ WCAG
 
-<!-- タイトルを示すベン図 -->
+<div class="flex justify-center">
+
+![alt text](/a11y_wcag_venn.svg){class="w-82 mt-[-3rem]"}
+
+</div>
 
 ::captions::
 
@@ -818,21 +886,15 @@ formElement.addEventListener("submit", (event) => {
 ]"
 />
 
+<style>
+h1 {
+  margin: 0
+}
+</style>
+
 ---
-
-# Conclusion <small>結論</small>
-
-<VP>
-<template #en>Design shortcuts with IME users in mind:</template>
-<template #ja>IMEユーザーの存在を念頭においてショートカットを設計しましょう</template>
-</VP>
-
-- <VP><template #en>Use <strong>form submit</strong> events, not keyup/keydown, for submissions.</template>
-  <template #ja>送信のためには、keyup/keydownではなく<strong>form submit</strong>イベントを使用しましょう。</template></VP>
-- <VP><template #en>Check <code>KeyboardEvent.isComposing</code> is false to avoid interfering with text input.</template>
-  <template #ja>入力を妨げないよう、<code>KeyboardEvent.isComposing</code>がfalseであることを確認しましょう。</template></VP>
-
-::captions::
+src: ./slides.md#4
+---
 
 ---
 layout: fact

@@ -41,7 +41,7 @@ const blur = (e: KeyboardEvent) => {
 
 <template>
   <div class="flex items-center gap-2">
-    <input class="input" type="text" ref="input" @keyup.enter.capture="handleEnter" @keydown.escape="blur" />
+    <input class="input" type="text" ref="input" @keydown.enter.capture="handleEnter" @keydown.escape="blur" />
     <div class="relative h-6 w-60">
       <Transition name="slide-up">
         <div v-if="showSubmitMessage" class="absolute inset-0 m-0">
