@@ -76,7 +76,10 @@ X: [@p_craft](https://x.com/p_craft)
 
 ---
 
-# Enquete
+<VH level="h1">
+<template #en>Enquete</template>
+<template #ja>アンケート</template>
+</VH>
 
 - <VP><template #en>Is there anyone who prefers English?</template>
   <template #ja>英語がいい人いますか？</template></VP>
@@ -85,7 +88,10 @@ X: [@p_craft](https://x.com/p_craft)
 
 ---
 
-# Conclusion <small>結論</small>
+<VH level="h1">
+<template #en>Conclusion</template>
+<template #ja>結論</template>
+</VH>
 
 <VP class="mb-3">
 <template #en>IME operations can be hindered by application shortcut keys!</template>
@@ -144,7 +150,10 @@ X: [@p_craft](https://x.com/p_craft)
 
 ---
 
-# Example (in Japanese) <small>例 (日本語の場合)</small>
+<VH level="h1">
+<template #en>Example (in Japanese)</template>
+<template #ja>例 (日本語の場合)</template>
+</VH>
 
 <div class="text-center text-2xl">
   <div v-click="2">
@@ -187,7 +196,10 @@ X: [@p_craft](https://x.com/p_craft)
 
 ---
 
-# IME Shortcuts <small>IMEのショートカット</small>
+<VH level="h1">
+<template #en>IME Shortcuts</template>
+<template #ja>IMEのショートカット</template>
+</VH>
 
 <table v-click="[2, 4]">
   <thead>
@@ -294,7 +306,10 @@ tbody th {
 
 ---
 
-# DEMO <small>デモ</small>
+<VH level="h1">
+<template #en>DEMO</template>
+<template #ja>デモ</template>
+</VH>
 
 <ShowKeyInput class="absolute right-4 top-4"/>
 
@@ -304,7 +319,10 @@ tbody th {
 
 ---
 
-# Problem <small>問題</small>
+<VH level="h1">
+<template #en>Problem</template>
+<template #ja>問題</template>
+</VH>
 
 <VP>
 <template #en>What happens when web app shortcuts conflict with IME shortcuts...?</template>
@@ -324,7 +342,10 @@ tbody th {
 
 ---
 
-# Bad DEMO
+<VH level="h1">
+<template #en>Bad DEMO</template>
+<template #ja>悪いデモ</template>
+</VH>
 
 1. Input "<ruby>要素<rt>youso</rt>と<rt>to</rt>属性<rt>zokusei</rt></ruby>" (means "elements and attributes")
 2. Hit <kbd>Enter</kbd> to submit
@@ -349,7 +370,10 @@ inputElement.addEventListener("keydown", (event) => {
 layout: two-cols-header
 ---
 
-# Bad Sample: "G"
+<VH level="h1">
+<template #en>Bad Sample: "G"</template>
+<template #ja>悪い例: "G"</template>
+</VH>
 
 Try to input 「<ruby>日本語が/途中で/送信される<rt>Japanese text is sent halfway through</rt></ruby>」 incrementally.
 
@@ -404,7 +428,10 @@ Try to input 「<ruby>日本語が/途中で/送信される<rt>Japanese text is
 layout: two-cols-header
 ---
 
-# Bad Sample: Chat app "S" <small>悪い例</small>
+<VH level="h1">
+<template #en>Bad Sample: "S"</template>
+<template #ja>悪い例: "S"</template>
+</VH>
 
 Type 「しけん」 and try to find the correct Kanji
 
@@ -517,7 +544,10 @@ document.addEventListener("keydown", (event) => {
 
 ---
 
-# Good DEMO
+<VH level="h1">
+<template #en>Good DEMO</template>
+<template #ja>良いデモ</template>
+</VH>
 
 1. Input "<ruby>要素<rt>youso</rt>と<rt>to</rt>属性<rt>zokusei</rt></ruby>" (means "elements and attributes")
 2. Hit <kbd>Enter</kbd> to submit
@@ -545,7 +575,10 @@ inputElement.addEventListener("keydown", (event) => {
 layout: two-cols-header
 ---
 
-# But……
+<VH level="h1">
+<template #en>But……</template>
+<template #ja>しかし……</template>
+</VH>
 
 **Safari** has a bug with `KeyboardEvent.isComposing`.
 
@@ -710,7 +743,10 @@ th {
 
 ---
 
-# MDN says...
+<VH level="h1">
+<template #en>MDN says...</template>
+<template #ja>MDNによると...</template>
+</VH>
 
 [Element: Keydown event | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event)
 
@@ -837,7 +873,10 @@ document.addEventListener("keydown", (event) => {
 
 ---
 
-# BTW...
+<VH level="h1">
+<template #en>BTW...</template>
+<template #ja>ところで...</template>
+</VH>
 
 <VP>
   <template #en>Use the <strong>form submit</strong> event for submissions. ( <code>&lt;textarea&gt;</code>? I'm sorry...)</template>
@@ -876,7 +915,10 @@ formElement.addEventListener("submit", (event) => {
 
 ---
 
-# Is this issue covered by WCAG?
+<VH level="h1">
+<template #en>Is this issue covered by WCAG?</template>
+<template #ja>この問題はWCAGに含まれるか？</template>
+</VH>
 
 <p v-click="3" class="text-9xl text-center h-63 flex justify-center items-center"> NO </p>
 
