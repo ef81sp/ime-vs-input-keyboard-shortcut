@@ -76,22 +76,12 @@ X: [@p_craft](https://x.com/p_craft)
 
 ---
 
-# Disclaimer <small>おことわり</small>
+# Enquete
 
-- <VP><template #en>Today I talk in English because I want to convey my message to those who have never experienced issues with IME.</template>
-  <template #ja>今日は、IMEで困ったことのない人に伝えるため、英語で話します。</template></VP>
-
-::captions::
-<VCaptions 
-  :en-captions="[
-    'Today I talk in English because',
-    'I want to convey my message to those who have never experienced issues with IME.',
-  ]"
-  :ja-captions="[
-    '今日は英語で話します、なぜなら',
-    'IMEで困ったことのない人に伝えたいからです。',
-  ]"
-/>
+- <VP><template #en>Is there anyone who prefers English?</template>
+  <template #ja>英語がいい人いますか？</template></VP>
+- <VP><template #en>This is something I'd like non-Japanese speakers to be aware of.</template>
+  <template #ja>テーマ的に非日本語話者にこそ知ってほしい内容です</template></VP>
 
 ---
 
@@ -309,7 +299,7 @@ tbody th {
 <ShowKeyInput class="absolute right-4 top-4"/>
 
 <div class="flex h-63 items-center">
-<input class="border-2 border-black text-7xl w-full p-4" />
+<input class="border-2 border-black text-7xl w-full p-4" @keydown.escape="(e) => { if(!e.isComposing) e.target.blur()}" />
 </div>
 
 ---
@@ -364,7 +354,6 @@ layout: two-cols-header
 Try to input 「<ruby>日本語が/途中で/送信される<rt>Japanese text is sent halfway through</rt></ruby>」 incrementally.
 
 ::left::
-
 <kbd class="text-xl!">Enter</kbd>
 
 - **IME**: Confirm
@@ -372,11 +361,24 @@ Try to input 「<ruby>日本語が/途中で/送信される<rt>Japanese text is
 
 ::right::
 
-<div class="flex justify-center h-52">
-<SlidevVideo v-click="2" autoplay controls class="border-1 border-black">
-  <source src="./ServiceG.mp4" type="video/mp4" />
-</SlidevVideo></div>
+<div class="flex justify-center w-78 border-1 border-black" v-click="1">
 
+<VSwitch at="1">
+<template #0-3>
+<img src="./ServiceG-1.png" alt="図1: IMEの入力が進行中のテキスト入力 — 部分的に変換された日本語テキストと候補リストが表示されている。 / Figure 1: Text input with IME composition in progress — partially composed Japanese text and the IME candidate list are visible." />
+</template>
+<template #3-5>
+<img src="./ServiceG-2.png" alt="図2: ユーザーがIMEの候補リストを移動中 — 別の候補がハイライトされ、変換が継続している。 / Figure 2: User navigating the IME candidate list — a different candidate is highlighted while composition continues." />
+</template>
+<template #5-6>
+<img src="./ServiceG-3.png" alt="図3: ユーザーがEnterキーでIMEの候補を確定しようとするが、アプリのEnter処理がIMEと競合して途中で送信されてしまう。 / Figure 3: The user presses Enter to confirm an IME candidate; the app’s Enter handling conflicts with the IME, causing a premature submit." />
+</template>
+<template #6>
+<img src="./ServiceG-4.png" alt="図4: 送信後の結果 — 部分的に確定された日本語テキストや、早期送信後の入力状態が表示されている。 / Figure 4: Result after submission showing the partially confirmed Japanese text or the input state after the premature submit." />
+</template>
+
+</VSwitch>
+</div>
 ::captions::
 
 <VCaptions
@@ -408,17 +410,37 @@ Type 「しけん」 and try to find the correct Kanji
 
 ::left::
 
+<div v-click="1">
 <kbd class="text-xl!">Tab</kbd>
 
 - **IME**: Move to next candidate
 - **Search box**: Complete candidate
 
+</div>
 ::right::
 
-<div class="flex justify-center">
-<SlidevVideo v-click="2" autoplay controls class="border-1 border-black">
+<div class="flex justify-center w-78 border-1 border-black" v-click="1">
+<!-- <SlidevVideo v-click="2" autoplay controls class="border-1 border-black">
   <source src="./ServiceS.mp4" type="video/mp4" />
-</SlidevVideo>
+</SlidevVideo> -->
+
+<VSwitch at="1">
+<template #1-2>
+<img src="./ServiceS-1.png" alt="図1: 検索ボックスに「しけん」と入力中、IMEの候補リストが表示されている / Figure 1: Typing ‘しけん’ in the search box with IME candidate list visible." />
+</template>
+<template #2-4>
+<img src="./ServiceS-2.png" alt="図2: IMEで候補を移動・選択している様子（矢印キーやTabで操作） / Figure 2: Navigating and selecting IME candidates (arrow keys / Tab)." />
+</template>
+<template #4-5>
+<img src="./ServiceS-3.png" alt="図3: アプリ側の補完候補が表示され、Tabでアプリの候補が選ばれてしまう場面 / Figure 3: App autocomplete appears and Tab selects the app's suggestion, overriding IME." />
+</template>
+<template #5>
+<img src="./ServiceS-4.png" alt="図4: IME操作が妨げられ、意図しない補完や検索候補が入力される結果 / Figure 4: IME operation interfered with, resulting in unintended completion or search input." />
+</template>
+<template #6>
+<img src="./ServiceS-5.png" alt="図5: 最終的に誤った文字列や途中の確定が入力される（ユーザー体験の問題） / Figure 5: Final state showing incorrect or prematurely confirmed text (user-impacting issue)." />
+</template>
+</VSwitch>
 </div>
 
 ::captions::
@@ -427,6 +449,7 @@ Type 「しけん」 and try to find the correct Kanji
   at="1"
   :en-captions="[
     'There are also cases where keys other than the Enter key can cause problems.',
+    'Let\'s try searching in Japanese in the search box.',
     'Tab key is used to move to the next candidate in IME,',
     'but it can also be used to select completion candidates in the app.',
     'As a result, the app can take precedence ',
@@ -434,6 +457,7 @@ Type 「しけん」 and try to find the correct Kanji
   ]"
   :ja-captions="[
     'Enterキー以外にも問題になるケースがあります。',
+    '検索欄で日本語で検索してみましょう。',
     'TabキーはIMEにおいて次の候補に移動するキーですが、',
     'アプリ側でも検索ワードの補完候補の選択に使われることがあります。',
     'その結果、アプリ側が勝ってしまって、',
@@ -535,10 +559,22 @@ layout: two-cols-header
 
 ::right::
 
-<div class="flex justify-center">
-<SlidevVideo autoplay controls class="border-1">
+<div class="flex justify-center w-78 border-1 border-black" v-click="1">
+<!-- <SlidevVideo autoplay controls class="border-1">
   <source src="./safari_bug.mp4" type="video/mp4" />
-</SlidevVideo>
+</SlidevVideo> -->
+
+<VSwitch at="1">
+<template #1>
+<img src="./safari-1.png" alt="図1: 先ほどのサンプルをSafariで表示している"/>
+</template>
+<template #2>
+<img src="./safari-2.png" alt="図2: 「要素」と入力したところ"/>
+</template>
+<template #3>
+<img src="./safari-3.png" alt="図3: 変換確定のEnterを押したら送信されてしまった"/>
+</template>
+</VSwitch>
 </div>
 
 ::captions::
@@ -547,11 +583,13 @@ layout: two-cols-header
   at="1"
   :en-captions="[
     'But, unfortunately, Safari has a bug with <code>KeyboardEvent.isComposing</code>.',
-    'When pressing the Enter key to confirm conversion, it becomes false.'
+    'When pressing the Enter key to confirm conversion, it becomes false.',
+    'This causes the premature submission issue.'
   ]"
   :ja-captions="[
     'しかし、残念ながら、Safariには<code>KeyboardEvent.isComposing</code>にバグがあります。',
-    '変換確定のEnterキーを押したとき、値がfalseになってしまいます。'
+    '変換確定のEnterキーを押したとき、値がfalseになってしまいます。',
+    'そのため、途中で送信が発生してしまいます。',
   ]"
 />
 
