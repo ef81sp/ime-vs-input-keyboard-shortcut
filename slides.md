@@ -118,7 +118,7 @@ X: [@p_craft](https://x.com/p_craft)
   :ja-captions="[
     'IMEの操作がアプリのショートカットキーによって妨げられることがあります！',
     '入力を妨げないよう、<code>KeyboardEvent.isComposing</code>が <strong>false</strong> であることを確認しましょう。',
-    'また、非推奨プロパティではありますが、<code>KeyboardEvent.keyCode</code>が<strong>229</strong>であることも確認しましょう。',
+    'また、非推奨プロパティですが、<code>KeyboardEvent.keyCode</code>が<strong>229</strong>であることも確認しましょう。',
     'これはWCAGでカバーされていないアクセシビリティ課題ですが、',
     'IMEで文字変換を行うユーザーにとって非常に重要です。'
   ]"
@@ -180,8 +180,8 @@ X: [@p_craft](https://x.com/p_craft)
 <VCaptions
   :en-captions="[
     'I introduce an example of IME user experience.',
-    'type &quot;hashi&quot; in alphabet and hit space key to see the suggestions.',
-    'IME displays a list of candidate characters, like',
+    'type in alphabet &quot;hashi&quot; and hit space key to see the suggestions.',
+    'IME displays a list of candidate characters, such as',
     '橋 (means bridge),',
     '箸 (means chopsticks),',
     '端 (means edge)',
@@ -203,7 +203,7 @@ X: [@p_craft](https://x.com/p_craft)
 <template #ja>IMEのショートカット</template>
 </VH>
 
-<table v-click="[2, 4]">
+<table v-click="[3, 6]">
   <thead>
     <tr>
       <th class="text-align-center!">shortcuts</th>
@@ -229,10 +229,19 @@ X: [@p_craft](https://x.com/p_craft)
         </VP>
       </td>
     </tr>
+    <tr>
+      <th class="text-align-center!"><kbd>Enter</kbd></th>
+      <td>
+        <VP>
+          <template #en>Confirm selected candidate</template>
+          <template #ja>選択した候補を確定します。</template>
+        </VP>
+      </td>
+    </tr>
   </tbody>
 </table>
 
-<table v-click="4">
+<table v-click="6">
   <thead>
     <tr>
       <th class="text-align-center!">shortcuts</th>
@@ -259,11 +268,11 @@ X: [@p_craft](https://x.com/p_craft)
       </td>
     </tr>
     <tr>
-      <th class="text-align-center!"><kbd>Enter</kbd></th>
+      <th class="text-align-center!"><kbd>Esc</kbd></th>
       <td>
         <VP>
-          <template #en>Confirm selected candidate</template>
-          <template #ja>選択した候補を確定します。</template>
+          <template #en>Cancel composition</template>
+          <template #ja>変換をキャンセルします。</template>
         </VP>
       </td>
     </tr>
@@ -290,19 +299,23 @@ tbody th {
 <VCaptions
   :en-captions="[
     'Let\'s review IME shortcuts.',
+    'It depends on the IME, but generally it works like this',
     'Space to start conversion.',
     'Tab to start completion.',
-    'Tab, Space, Down Arrow to move to the next candidate.',
-    'Shift + Tab, Shift + Space, Up Arrow to move to the previous candidate.',
     'Enter to confirm the selected candidate.',
+    '...Well,',
+    'There are various others, but the important point is that',
+    'unexpected keys might be used as common shortcuts.',
   ]"
   :ja-captions="[
     'IMEのショートカットを確認しておきましょう。',
+    'ソフトによりますが、だいたいこんな感じです。',
     'Space で変換を開始します。',
     'Tab で補完を開始します。',
-    'Tab, Space, 下矢印 で次の候補に移動します。',
-    'Shift + Tab, Shift + Space, 上矢印 で前の候補に移動します。',
     'Enter で選択した候補を確定します。',
+    '……まぁ、',
+    'いろいろありますが、重要なのは、',
+    'おもいもよらないキーが当たり前に使われているかもしれない、ということです。',
   ]"
 />
 
@@ -318,6 +331,32 @@ tbody th {
 <div class="flex h-63 items-center">
 <input class="border-2 border-black text-7xl w-full p-4" @keydown.escape="(e) => { if(!e.isComposing) e.target.blur()}" />
 </div>
+
+<!--
+hashiといれると、随時ひらがなが表示されます。  
+When you type "hashi", hiragana characters appear incrementally.
+
+スペースキーを押すと、漢字に変換されます。  
+Pressing the Space key converts the text to kanji.
+
+もう一度押すと、候補の一覧が出て、どんどん移動できます。  
+Press it again to open the candidate list and navigate through the options.
+
+Tabやカーソルキーでも移動できます。  
+You can also move through candidates using Tab or the arrow keys.
+
+Escを押すと変換前の状態に戻れます。  
+Press Esc to cancel the composition and revert to the pre-conversion text.
+
+最初のスペースキーの代わりにTabキーを押すと、補完ができます。  
+If you press Tab instead of the initial Space, you can trigger autocompletion.
+
+Enterキーで確定します。
+Press Enter to confirm.
+
+こんな感じです。  
+That's basically how it works.
+-->
 
 ---
 
@@ -338,7 +377,7 @@ tbody th {
     'Well, what happens when web app shortcuts conflict with IME shortcuts?',
   ]"
   :ja-captions="[
-    'さて、WebアプリのショートカットキーがIMEのショートカットキーと衝突するとどうなるでしょうか？'
+    'さて、WebアプリとIMEのショートカットキーが衝突するとどうなるでしょうか？'
   ]"
 />
 
@@ -367,6 +406,20 @@ inputElement.addEventListener("keydown", (event) => {
 </div>
 
 <ShowKeyInput class="absolute right-4 top-4"/>
+
+<!--
+Enterキーで送信できるフォームです。チャットとかでよくあります。\
+It's a form that can be submitted with the Enter key. Often seen in chat applications.
+
+「要素と属性」と少しずつ入力してみます。\
+I will try to input 「要素と属性」 little by little.
+
+ここでいったん確定のためにEnterキーを押します。\
+Here, I press the Enter key to confirm once.
+
+しかし、アプリ側がEnterキーで送信してしまいます。途中にも関わらずです。\
+However, the app side sends it with the Enter key. Despite being in the halfway of input.
+-->
 
 ---
 layout: two-cols-header
@@ -409,7 +462,7 @@ Try to input 「<ruby>日本語が/途中で/送信される<rt>Japanese text is
 
 <VCaptions
   :en-captions="[
-    'This is a very very very very very common issue.',
+    'This is an extremely common issue.',
     'Try to input 「日本語が途中で送信される」 incrementally.',
     'When inputting Japanese, it is rare to enter the entire text at once,',
     'and users often confirm the text little by little as they type.',
@@ -477,7 +530,7 @@ Type 「しけん」 and try to find the correct Kanji
 <VCaptions
   at="1"
   :en-captions="[
-    'There are also cases where keys other than the Enter key can cause problems.',
+    'Other keys, not just Enter, can also cause issues.',
     'Let\'s try searching in Japanese in the search box.',
     'Tab key is used to move to the next candidate in IME,',
     'but it can also be used to select completion candidates in the app.',
@@ -818,12 +871,14 @@ document.addEventListener("keydown", (event) => {
   :en-captions="[
     'So, the solution 1 is check <code>keyCode</code> is <code>229</code>.',
     'You may not be comfortable with checking a deprecated parameter,',
-    'but it\'s advisable to do so now.'
+    'but it\'s advisable to do so now.',
+    'Hopefully, Safari will address this eventually.'
   ]"
   :ja-captions="[
     'ということで、解決策1は<code>keyCode</code>が<code>229</code>であることを確認することです。',
     '非推奨のパラメータを確認することに抵抗があるかもしれませんが、',
-    '今はそうすることをお勧めします。'
+    '今はそうすることをお勧めします。',
+    'Safariが直ってほしいですね。'
   ]"
 />
 
@@ -834,7 +889,7 @@ document.addEventListener("keydown", (event) => {
 <div class="[&_pre]:text-4! [&_pre]:lh-5!">
 
 ````md magic-move
-```js {*}
+```js {*|*}
 document.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     if (event.isComposing) {
@@ -864,12 +919,16 @@ document.addEventListener("keydown", (event) => {
 <VCaptions
   at="1"
   :en-captions="[
-    'The another solution is add Meta / Ctrl key to submit.',
-    'You don\'t have to rely solely on the Enter key for submission.'
+    'This is more of a \'side note\'...',
+    'Another solution is add Meta / Ctrl key to submit.',
+    'You don\'t have to rely solely on the Enter key for submission.',
+    'This is a better option if an app allows line breaks in an input field.'
   ]"
   :ja-captions="[
+    'これは蛇足ですが……',
     '別の解決策は、Meta / Ctrlキーを追加して送信することです。',
     'そもそもEnterキーだけで送信しなければいいという話ですね。',
+    '入力欄で改行ができるようなアプリなら、よりよい選択肢でしょう。'
   ]"
 />
 

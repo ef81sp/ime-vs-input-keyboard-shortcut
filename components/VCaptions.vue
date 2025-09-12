@@ -14,8 +14,8 @@ const { primaryLang, secondaryLang } = usePrimaryLang()
 const combinedCaptions = computed(() => {
   const maxLength = Math.max(enCaptions.length, jaCaptions.length)
   return Array.from({ length: maxLength }, (_, index) => ({
-    primary: primaryLang.value === 'en' ? enCaptions[index] || '' : jaCaptions[index] || '',
-    secondary: secondaryLang.value === 'en' ? enCaptions[index] || '' : jaCaptions[index] || '',
+    en: enCaptions[index] || '',
+    ja: jaCaptions[index] || '',
     slotName: (index + 1).toString(),
   }))
 })
@@ -25,11 +25,11 @@ const combinedCaptions = computed(() => {
   <VSwitch :at>
     <template v-for="(caption, index) in combinedCaptions" :key="index" v-slot:[caption.slotName]>
       <VP>
-        <template :name="primaryLang">
-          <span v-html="caption.primary"></span>
+        <template #en>
+          <span v-html="caption.en"></span>
         </template>
-        <template :name="secondaryLang">
-          <span v-html="caption.secondary"></span>
+        <template #ja>
+          <span v-html="caption.ja"></span>
         </template>
       </VP>
     </template>

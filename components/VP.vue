@@ -1,7 +1,13 @@
 <template>
   <div>
-    <p class="primary" :lang="primaryLang"><slot :name="primaryLang" /></p>
-    <p class="secondary" :lang="secondaryLang"><slot :name="secondaryLang" /></p>
+    <p class="primary" :lang="primaryLang">
+      <slot v-if="primaryLang === 'en'" name="en" />
+      <slot v-else-if="primaryLang === 'ja'" name="ja" />
+    </p>
+    <p class="secondary" :lang="secondaryLang">
+      <slot v-if="secondaryLang === 'en'" name="en" />
+      <slot v-else-if="secondaryLang === 'ja'" name="ja" />
+    </p>
   </div>
 </template>
 
