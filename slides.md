@@ -82,11 +82,31 @@ X: [@p_craft](https://x.com/p_craft)
 </VH>
 
 - <VP><template #en>Is there anyone who prefers English?</template>
-  <template #ja>英語がいい人いますか？</template></VP>
+  <template #ja>英語での発表がいい人いますか？</template></VP>
 - <VP><template #en>This is something I'd like non-Japanese speakers to be aware of.</template>
   <template #ja>テーマ的に非日本語話者にこそ知ってほしい内容です</template></VP>
 
 <SelectLang />
+
+---
+
+<VH level="h1">
+<template #en>Today's Slides</template>
+<template #ja>今日のスライド</template>
+</VH>
+
+::captions::
+
+<VCaptions
+  :en-captions="[
+    'Today\'s slides are here. I\'ve also shared them on Twitter.',
+    'The input field demo may not work on smartphones...'
+  ]"
+  :ja-captions="[
+    '今日のスライドはこちらです。Twitterにも流してあります。',
+    '入力欄のデモはスマートフォンだと動かないかもしれませんが……'
+  ]"
+/>
 
 ---
 
@@ -96,14 +116,20 @@ X: [@p_craft](https://x.com/p_craft)
 </VH>
 
 <VP class="mb-3">
-<template #en>IME operations can be hindered by application shortcut keys!</template>
-<template #ja>IMEの操作がアプリのショートカットキーによって妨げられることがあります！</template>
+<template #en>Let's do this!</template>
+<template #ja>こうしよう！</template>
 </VP>
 
-- <VP><template #en>Check <code>KeyboardEvent.isComposing</code> is <strong>false</strong> to avoid interfering with text input.</template>
-  <template #ja>入力を妨げないよう <code>KeyboardEvent.isComposing</code>が <strong>false</strong> であることを確認しましょう。</template></VP>
-- <VP><template #en>Also check <code>KeyboardEvent.keyCode</code> is <strong>229</strong>.</template>
-  <template #ja><code>KeyboardEvent.keyCode</code> が<strong>229</strong>であることも確認しましょう。</template></VP>
+```js {3-5}
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    if (event.isComposing || event.keyCode === 229) {
+      return;
+    }
+    submit();
+  }
+});
+```
 
 ::captions::
 
@@ -153,48 +179,41 @@ X: [@p_craft](https://x.com/p_craft)
 ---
 
 <VH level="h1">
-<template #en>Example (in Japanese)</template>
-<template #ja>例 (日本語の場合)</template>
+<template #en>IME DEMO</template>
+<template #ja>IMEのデモ</template>
 </VH>
 
-<div class="text-center text-2xl">
-  <div v-click="2">
-    hashi
-  </div>
-  <div v-click="2">
-    ↓
-  </div>
-  <div v-click="4">
-    橋 (bridge)
-  </div>
-  <div v-click="5">
-    箸 (chopsticks)
-  </div>
-  <div v-click="6">
-    端 (edge)
-  </div>
+<ShowKeyInput class="absolute right-4 top-4"/>
+
+<div class="flex h-63 items-center">
+<input class="border-2 border-black text-7xl w-full p-4" @keydown.escape="(e) => { if(!e.isComposing) e.target.blur()}" />
 </div>
 
-::captions::
+<!--
+hashiといれると、随時ひらがなが表示されます。  
+When you type "hashi", hiragana characters appear incrementally.
 
-<VCaptions
-  :en-captions="[
-    'I introduce an example of IME user experience.',
-    'type in alphabet &quot;hashi&quot; and hit space key to see the suggestions.',
-    'IME displays a list of candidate characters, such as',
-    '橋 (means bridge),',
-    '箸 (means chopsticks),',
-    '端 (means edge)',
-  ]"
-  :ja-captions="[
-    'IMEユーザーの体験例を紹介します。',
-    'アルファベットで hashi と入力し、スペースキーを押すと候補が表示されます。',
-    'IMEは、次のような候補文字のリストを表示します。',
-    '',
-    '',
-    '',
-  ]"
-/>
+スペースキーを押すと、漢字に変換されます。  
+Pressing the Space key converts the text to kanji.
+
+もう一度押すと、候補の一覧が出て、どんどん移動できます。  
+Press it again to open the candidate list and navigate through the options.
+
+Tabやカーソルキーでも移動できます。  
+You can also move through candidates using Tab or the arrow keys.
+
+Escを押すと変換前の状態に戻れます。  
+Press Esc to cancel the composition and revert to the pre-conversion text.
+
+最初のスペースキーの代わりにTabキーを押すと、補完ができます。  
+If you press Tab instead of the initial Space, you can trigger autocompletion.
+
+Enterキーで確定します。
+Press Enter to confirm.
+
+こんな感じです。  
+That's basically how it works.
+-->
 
 ---
 
@@ -299,10 +318,11 @@ tbody th {
 <VCaptions
   :en-captions="[
     'Let\'s review IME shortcuts.',
-    'It depends on the IME, but generally it works like this',
+    'It depends on the type of IME, but generally it works like this',
     'Space to start conversion.',
     'Tab to start completion.',
-    'Enter to confirm the selected candidate.',
+    'Enter to confirm the selected candidate. Then...',
+    '',
     '...Well,',
     'There are various others, but the important point is that',
     'unexpected keys might be used as common shortcuts.',
@@ -312,51 +332,13 @@ tbody th {
     'ソフトによりますが、だいたいこんな感じです。',
     'Space で変換を開始します。',
     'Tab で補完を開始します。',
-    'Enter で選択した候補を確定します。',
+    'Enter で選択した候補を確定します。そして……',
+    '',
     '……まぁ、',
     'いろいろありますが、重要なのは、',
     'おもいもよらないキーが当たり前に使われているかもしれない、ということです。',
   ]"
 />
-
----
-
-<VH level="h1">
-<template #en>DEMO</template>
-<template #ja>デモ</template>
-</VH>
-
-<ShowKeyInput class="absolute right-4 top-4"/>
-
-<div class="flex h-63 items-center">
-<input class="border-2 border-black text-7xl w-full p-4" @keydown.escape="(e) => { if(!e.isComposing) e.target.blur()}" />
-</div>
-
-<!--
-hashiといれると、随時ひらがなが表示されます。  
-When you type "hashi", hiragana characters appear incrementally.
-
-スペースキーを押すと、漢字に変換されます。  
-Pressing the Space key converts the text to kanji.
-
-もう一度押すと、候補の一覧が出て、どんどん移動できます。  
-Press it again to open the candidate list and navigate through the options.
-
-Tabやカーソルキーでも移動できます。  
-You can also move through candidates using Tab or the arrow keys.
-
-Escを押すと変換前の状態に戻れます。  
-Press Esc to cancel the composition and revert to the pre-conversion text.
-
-最初のスペースキーの代わりにTabキーを押すと、補完ができます。  
-If you press Tab instead of the initial Space, you can trigger autocompletion.
-
-Enterキーで確定します。
-Press Enter to confirm.
-
-こんな感じです。  
-That's basically how it works.
--->
 
 ---
 
@@ -626,6 +608,17 @@ inputElement.addEventListener("keydown", (event) => {
 
 <ShowKeyInput class="absolute right-4 top-4"/>
 
+<!--
+さっきと同じケースを試してみます。\
+We will try the same case as before.
+
+今度は途中でEnterキーを押しても、送信されません。\
+This time, even if we press the Enter key in the middle, it will not be sent.
+
+無事に最後まで入力して送信できました。\
+We were able to enter and send it safely to the end.
+-->
+
 ---
 layout: two-cols-header
 ---
@@ -815,10 +808,12 @@ th {
 
 <VCaptions
   :en-captions="[
-  'MDN says check <code>keyCode</code> is <code>229</code>, although it\'s deprecated.'
+    'Based on this, MDN says,',
+    'check <code>keyCode</code> is <code>229</code>, although it\'s deprecated.'
   ]"
   :ja-captions="[
-    'MDNは、非推奨であるものの、<quot>keyCode</quot>が<quot>229</quot>であることを確認するように言っています。'
+    'これを踏まえて、MDNは、',
+    '非推奨であるものの、<quot>keyCode</quot>が<quot>229</quot>であることを確認するように言っています。'
   ]"
 />
 
@@ -964,38 +959,16 @@ formElement.addEventListener("submit", (event) => {
 <VCaptions
   :en-captions="[
     'By the way, if it is for submission, consider using the form submit event.',
+    'This way, the browser handles it perfectly. No Safari bugs either.',
     'However, for <code>\&\lt;textarea\&\gt;</code>, you cannot submit with the Enter key.',
     'In that case, you would need to use the keydown event as we discussed earlier.'
   ]"
   :ja-captions="[
     'それはそれとして、それが送信であるなら、form要素のsubmitイベントを使うことも検討すべきです。',
+    'これなら、ブラウザが完璧にハンドリングしてくれます。Safariのバグも関係ありません。',
     'ただし、<code>\&\lt\;textarea&gt;</code>の場合は、Enterキーによる送信はできません。',
     'その場合は、これまでのお話のように、keydownイベントを使用する必要があるでしょう。'
   ]"
-/>
-
----
-
-<VH level="h1">
-<template #en>Is this issue covered by WCAG?</template>
-<template #ja>この問題はWCAGに含まれるか？</template>
-</VH>
-
-<p v-click="3" class="text-9xl text-center h-63 flex justify-center items-center"> NO </p>
-
-::captions::
-
-<VCaptions
-:en-captions="[
-  'I consider this an accessibility issue.',
-  'Is this issue covered by WCAG?',
-  'The answer is NO.',
-]"
-:ja-captions="[
-  'わたしはこれをアクセシビリティの問題だと考えています。',
-  'この問題はWCAGでカバーされているのでしょうか？',
-  '答えはNOです。',
-]"
 />
 
 ---
@@ -1004,7 +977,7 @@ formElement.addEventListener("submit", (event) => {
 
 <div class="flex justify-center">
 
-![alt text](/a11y_wcag_venn.svg){class="w-82 mt-[-3rem]"}
+![アクセシビリティ（a11y）とWCAGの関係を示すベン図 — WCAGはアクセシビリティ要件の一部をカバーするが全てを網羅しているわけではない / Venn diagram showing the relationship between accessibility (a11y) and WCAG — WCAG covers some but not all accessibility requirements](/a11y_wcag_venn.svg){class="w-82 mt-[-3rem]"}
 
 </div>
 
@@ -1012,6 +985,8 @@ formElement.addEventListener("submit", (event) => {
 
 <VCaptions
 :en-captions="[
+  'I consider this an accessibility issue,',
+  'but it is not covered by WCAG.',
   'Of course, WCAG does not cover all accessibility issues.',
   'This issue arises because it is unknown to implementers.',
   'There must be other unknown issues like this.',
@@ -1019,6 +994,8 @@ formElement.addEventListener("submit", (event) => {
   'and developers need to listen to users\' voices.',
 ]"
 :ja-captions="[
+  'わたしはこれをアクセシビリティの問題だと考えていますが、',
+  'WCAGではカバーされていません。',
   '当然ながら、WCAGがすべてのアクセシビリティ課題をカバーしているわけではありません。',
   '今回の問題は、実装者にとって未知だから発生しています。',
   'このような未知の問題は、ほかにも必ずあるはずです。',
@@ -1034,8 +1011,42 @@ h1 {
 </style>
 
 ---
-src: ./slides.md#4
----
+
+<VH level="h1">
+<template #en>Conclusion</template>
+<template #ja>結論</template>
+</VH>
+
+<VP class="mb-3">
+<template #en>Let's do this!</template>
+<template #ja>こうしよう！</template>
+</VP>
+
+<div class="[&_pre]:text-3.5! [&_pre]:lh-5!">
+
+```js {3-5}
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    if (event.isComposing || event.keyCode === 229) {
+      return;
+    }
+    submit();
+  }
+});
+```
+
+</div>
+
+::captions::
+
+<VCaptions 
+  :en-captions="[
+    'In conclusion, let\'s do this!',
+  ]"
+  :ja-captions="[
+    '今日の結論は……こうしよう！',
+  ]"
+/>
 
 ---
 layout: fact
