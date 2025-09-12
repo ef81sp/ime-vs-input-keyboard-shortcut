@@ -86,6 +86,8 @@ X: [@p_craft](https://x.com/p_craft)
 - <VP><template #en>This is something I'd like non-Japanese speakers to be aware of.</template>
   <template #ja>テーマ的に非日本語話者にこそ知ってほしい内容です</template></VP>
 
+<SelectLang />
+
 ---
 
 <VH level="h1">

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import VP from './VP.vue'
 import { computed, toRefs } from 'vue'
+import { usePrimaryLang } from '../composables/usePrimaryLang'
 
 const { enCaptions, jaCaptions, at = '+1' } = defineProps<{
   enCaptions: string[]
@@ -8,11 +9,13 @@ const { enCaptions, jaCaptions, at = '+1' } = defineProps<{
   at?: string | number
 }>()
 
+const { primaryLang, secondaryLang } = usePrimaryLang()
+
 const combinedCaptions = computed(() => {
   const maxLength = Math.max(enCaptions.length, jaCaptions.length)
   return Array.from({ length: maxLength }, (_, index) => ({
-    en: enCaptions[index] || '',
-    ja: jaCaptions[index] || '',
+    primary: primaryLang.value === 'en' ? enCaptions[index] || '' : jaCaptions[index] || '',
+    secondary: secondaryLang.value === 'en' ? enCaptions[index] || '' : jaCaptions[index] || '',
     slotName: (index + 1).toString(),
   }))
 })
@@ -22,11 +25,11 @@ const combinedCaptions = computed(() => {
   <VSwitch :at>
     <template v-for="(caption, index) in combinedCaptions" :key="index" v-slot:[caption.slotName]>
       <VP>
-        <template #en>
-          <span v-html="caption.en"></span>
+        <template :name="primaryLang">
+          <span v-html="caption.primary"></span>
         </template>
-        <template #ja>
-          <span v-html="caption.ja"></span>
+        <template :name="secondaryLang">
+          <span v-html="caption.secondary"></span>
         </template>
       </VP>
     </template>

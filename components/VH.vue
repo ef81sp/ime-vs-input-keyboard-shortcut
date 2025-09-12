@@ -1,11 +1,15 @@
 <template>
   <component :is="level">
-    <span lang="en"><slot name="en" /></span>
-    <small lang="ja" class="ml-8 text-[0.65em]"><slot name="ja" /></small>
+    <span :lang="primaryLang"><slot :name="primaryLang" /></span>
+    <small :lang="secondaryLang" class="ml-8 text-[0.65em]"
+      ><slot :name="secondaryLang"
+    /></small>
   </component>
 </template>
 
 <script setup lang="ts">
+import { usePrimaryLang } from "../composables/usePrimaryLang";
+
 defineProps({
   level: {
     type: String,
@@ -15,4 +19,6 @@ defineProps({
       ["h1", "h2", "h3", "h4", "h5", "h6"].includes(value),
   },
 });
+
+const { primaryLang, secondaryLang } = usePrimaryLang();
 </script>

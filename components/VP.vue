@@ -1,16 +1,22 @@
 <template>
   <div>
-    <p class="en" lang="en"><slot name="en" /></p>
-    <p class="ja" lang="ja"><slot name="ja" /></p>
+    <p class="primary" :lang="primaryLang"><slot :name="primaryLang" /></p>
+    <p class="secondary" :lang="secondaryLang"><slot :name="secondaryLang" /></p>
   </div>
 </template>
 
+<script setup lang="ts">
+import { usePrimaryLang } from '../composables/usePrimaryLang';
+
+const { primaryLang, secondaryLang } = usePrimaryLang();
+</script>
+
 <style scoped>
-.en {
+.primary {
   margin-top: 0.5em;
   margin-bottom: 0.2em;
 }
-.ja {
+.secondary {
   font-size: 0.85em;
   margin-top: 0;
   margin-left: 1.5em;
