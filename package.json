@@ -18,6 +18,7 @@
   "devDependencies": {
     "@prettier/plugin-xml": "^3.4.2",
     "@vueuse/core": "13.9.0",
+    "playwright-chromium": "^1.55.0",
     "prettier": "^3.6.2",
     "prettier-plugin-slidev": "^1.0.5"
   }
