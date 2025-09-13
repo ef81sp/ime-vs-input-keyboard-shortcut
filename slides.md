@@ -94,6 +94,9 @@ X: [@p_craft](https://x.com/p_craft)
 <template #en>Today's Slides</template>
 <template #ja>今日のスライド</template>
 </VH>
+<div class="text-align-center">
+<img src="/QR.png" alt="QR code to access today's slides" class="h-68 mx-auto"/>
+</div>
 
 ::captions::
 
@@ -120,6 +123,8 @@ X: [@p_craft](https://x.com/p_craft)
 <template #ja>こうしよう！</template>
 </VP>
 
+<div class="[&_pre]:text-3.5! [&_pre]:lh-5!">
+
 ```js {3-5}
 document.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
@@ -130,6 +135,8 @@ document.addEventListener("keydown", (event) => {
   }
 });
 ```
+
+</div>
 
 ::captions::
 
@@ -989,8 +996,8 @@ formElement.addEventListener("submit", (event) => {
   'Of course, WCAG does not cover all accessibility issues.',
   'This issue arises because it is unknown to implementers.',
   'There must be other unknown issues like this.',
-  'Therefore, if we are stakeholders, we must raise our voices,',
-  'and developers need to listen to users\' voices.',
+  'Therefore, if we are stakeholders, we should raise our voices,',
+  'and it\'s important for developers to listen to users\' voices.',
 ]"
 :ja-captions="[
   'わたしはこれをアクセシビリティの問題だと考えていますが、',
@@ -999,7 +1006,7 @@ formElement.addEventListener("submit", (event) => {
   '今回の問題は、実装者にとって未知だから発生しています。',
   'このような未知の問題は、ほかにも必ずあるはずです。',
   'ですから、自分たちが当事者であれば、しっかり声を上げなければなりませんし、',
-  '開発者はユーザーの声に耳を傾ける必要があります。',
+  '開発者はユーザーの声に耳を傾けることが重要です。',
 ]"
 />
 
