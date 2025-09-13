@@ -18,14 +18,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: black;
+  background-color: light-dark(black, #1a1a1a); /* Darker background for dark mode */
 }
 
 .captions-container:deep(p) {
-  color: white;
+  color: light-dark(white, #e0e0e0); /* Lighter text for dark mode */
 }
 .captions-container:deep(code) {
-  background-color: lightgray;
-  color: maroon;
+  background-color: light-dark(lightgray, #333333); /* Darker code background for dark mode */
+  color: light-dark(maroon, #ff6666); /* Lighter code text for dark mode */
 }
 </style>

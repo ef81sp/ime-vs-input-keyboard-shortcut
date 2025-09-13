@@ -154,12 +154,12 @@ document.addEventListener("keydown", (event) => {
 
 # IME (Input Method Editor)
 
-- <VP><template #en>IME is software that supports text input on computers.</template>
-  <template #ja>IMEは、コンピューターでの文字入力をサポートするためのソフトウェアです。</template></VP>
-- <VP><template #en>It offers features like predictive input and character composition.</template>
-  <template #ja>入力補完や、文字の合成などを行います。</template></VP>
-- <VP><template #en>For languages like Japanese and Chinese, it provides kanji <strong>conversion</strong>.</template>
-  <template #ja>とくに日本語、中国語などでは、漢字への<strong>変換</strong>を行います。</template></VP>
+- <VP><template #en>Software that supports text input</template>
+  <template #ja>文字入力をサポートするためのソフトウェア</template></VP>
+- <VP><template #en>Predictive input, character composition, etc.</template>
+  <template #ja>入力補完、文字の合成など</template></VP>
+- <VP><template #en>Kanji <strong>conversion</strong> (Japanese and Chinese).</template>
+  <template #ja>漢字への<strong>変換</strong> (日本語と中国語)。</template></VP>
 
 ::captions::
 
@@ -342,15 +342,14 @@ tbody th {
 
 ---
 
-<VH level="h1">
+<VH level="h1" class="mb-0!">
 <template #en>Problem</template>
 <template #ja>問題</template>
 </VH>
 
-<VP>
-<template #en>What happens when web app shortcuts conflict with IME shortcuts...?</template>
-<template #ja>もしWebアプリのショートカットキーがIMEのショートカットキーと衝突したら……？</template>
-</VP>
+<div class="flex justify-center space-x-4">
+<img src="/boxing.png" alt="ボクシングのイラスト。「IME Shortcuts」の青いボクサーと、「Web App Shortcuts」の赤いボクサーが戦っている。 / Boxing illustration. The blue boxer represents 'IME Shortcuts' and the red boxer represents 'Web App Shortcuts' are fighting." class="h-74"/>
+</div>
 
 ::captions::
 
@@ -408,8 +407,8 @@ layout: two-cols-header
 ---
 
 <VH level="h1">
-<template #en>Bad Sample: "G"</template>
-<template #ja>悪い例: "G"</template>
+<template #en>Problematic Sample: "G"</template>
+<template #ja>問題例: "G"</template>
 </VH>
 
 Try to input 「<ruby>日本語が/途中で/送信される<rt>Japanese text is sent halfway through</rt></ruby>」 incrementally.
@@ -426,16 +425,16 @@ Try to input 「<ruby>日本語が/途中で/送信される<rt>Japanese text is
 
 <VSwitch at="1">
 <template #0-3>
-<img src="./ServiceG-1.png" alt="図1: IMEの入力が進行中のテキスト入力 — 部分的に変換された日本語テキストと候補リストが表示されている。 / Figure 1: Text input with IME composition in progress — partially composed Japanese text and the IME candidate list are visible." />
+<img src="/ServiceG-1.png" alt="図1: IMEの入力が進行中のテキスト入力 — 部分的に変換された日本語テキストと候補リストが表示されている。 / Figure 1: Text input with IME composition in progress — partially composed Japanese text and the IME candidate list are visible." />
 </template>
 <template #3-5>
-<img src="./ServiceG-2.png" alt="図2: ユーザーがIMEの候補リストを移動中 — 別の候補がハイライトされ、変換が継続している。 / Figure 2: User navigating the IME candidate list — a different candidate is highlighted while composition continues." />
+<img src="/ServiceG-2.png" alt="図2: ユーザーがIMEの候補リストを移動中 — 別の候補がハイライトされ、変換が継続している。 / Figure 2: User navigating the IME candidate list — a different candidate is highlighted while composition continues." />
 </template>
 <template #5-6>
-<img src="./ServiceG-3.png" alt="図3: ユーザーがEnterキーでIMEの候補を確定しようとするが、アプリのEnter処理がIMEと競合して途中で送信されてしまう。 / Figure 3: The user presses Enter to confirm an IME candidate; the app’s Enter handling conflicts with the IME, causing a premature submit." />
+<img src="/ServiceG-3.png" alt="図3: ユーザーがEnterキーでIMEの候補を確定しようとするが、アプリのEnter処理がIMEと競合して途中で送信されてしまう。 / Figure 3: The user presses Enter to confirm an IME candidate; the app’s Enter handling conflicts with the IME, causing a premature submit." />
 </template>
 <template #6>
-<img src="./ServiceG-4.png" alt="図4: 送信後の結果 — 部分的に確定された日本語テキストや、早期送信後の入力状態が表示されている。 / Figure 4: Result after submission showing the partially confirmed Japanese text or the input state after the premature submit." />
+<img src="/ServiceG-4.png" alt="図4: 送信後の結果 — 部分的に確定された日本語テキストや、早期送信後の入力状態が表示されている。 / Figure 4: Result after submission showing the partially confirmed Japanese text or the input state after the premature submit." />
 </template>
 
 </VSwitch>
@@ -466,8 +465,8 @@ layout: two-cols-header
 ---
 
 <VH level="h1">
-<template #en>Bad Sample: "S"</template>
-<template #ja>悪い例: "S"</template>
+<template #en>Problematic Sample: "S"</template>
+<template #ja>問題例: "S"</template>
 </VH>
 
 Type 「しけん」 and try to find the correct Kanji
@@ -485,24 +484,24 @@ Type 「しけん」 and try to find the correct Kanji
 
 <div class="flex justify-center w-78 border-1 border-black" v-click="1">
 <!-- <SlidevVideo v-click="2" autoplay controls class="border-1 border-black">
-  <source src="./ServiceS.mp4" type="video/mp4" />
+  <source src="/ServiceS.mp4" type="video/mp4" />
 </SlidevVideo> -->
 
 <VSwitch at="1">
 <template #1-2>
-<img src="./ServiceS-1.png" alt="図1: 検索ボックスに「しけん」と入力中、IMEの候補リストが表示されている / Figure 1: Typing ‘しけん’ in the search box with IME candidate list visible." />
+<img src="/ServiceS-1.png" alt="図1: 検索ボックスに「しけん」と入力中、IMEの候補リストが表示されている / Figure 1: Typing ‘しけん’ in the search box with IME candidate list visible." />
 </template>
 <template #2-4>
-<img src="./ServiceS-2.png" alt="図2: IMEで候補を移動・選択している様子（矢印キーやTabで操作） / Figure 2: Navigating and selecting IME candidates (arrow keys / Tab)." />
+<img src="/ServiceS-2.png" alt="図2: IMEで候補を移動・選択している様子（矢印キーやTabで操作） / Figure 2: Navigating and selecting IME candidates (arrow keys / Tab)." />
 </template>
 <template #4-5>
-<img src="./ServiceS-3.png" alt="図3: アプリ側の補完候補が表示され、Tabでアプリの候補が選ばれてしまう場面 / Figure 3: App autocomplete appears and Tab selects the app's suggestion, overriding IME." />
+<img src="/ServiceS-3.png" alt="図3: アプリ側の補完候補が表示され、Tabでアプリの候補が選ばれてしまう場面 / Figure 3: App autocomplete appears and Tab selects the app's suggestion, overriding IME." />
 </template>
 <template #5>
-<img src="./ServiceS-4.png" alt="図4: IME操作が妨げられ、意図しない補完や検索候補が入力される結果 / Figure 4: IME operation interfered with, resulting in unintended completion or search input." />
+<img src="/ServiceS-4.png" alt="図4: IME操作が妨げられ、意図しない補完や検索候補が入力される結果 / Figure 4: IME operation interfered with, resulting in unintended completion or search input." />
 </template>
 <template #6>
-<img src="./ServiceS-5.png" alt="図5: 最終的に誤った文字列や途中の確定が入力される（ユーザー体験の問題） / Figure 5: Final state showing incorrect or prematurely confirmed text (user-impacting issue)." />
+<img src="/ServiceS-5.png" alt="図5: 最終的に誤った文字列や途中の確定が入力される（ユーザー体験の問題） / Figure 5: Final state showing incorrect or prematurely confirmed text (user-impacting issue)." />
 </template>
 </VSwitch>
 </div>
@@ -642,18 +641,18 @@ layout: two-cols-header
 
 <div class="flex justify-center w-78 border-1 border-black" v-click="1">
 <!-- <SlidevVideo autoplay controls class="border-1">
-  <source src="./safari_bug.mp4" type="video/mp4" />
+  <source src="/safari_bug.mp4" type="video/mp4" />
 </SlidevVideo> -->
 
 <VSwitch at="1">
 <template #1>
-<img src="./safari-1.png" alt="図1: 先ほどのサンプルをSafariで表示している"/>
+<img src="/safari-1.png" alt="図1: 先ほどのサンプルをSafariで表示している"/>
 </template>
 <template #2>
-<img src="./safari-2.png" alt="図2: 「要素」と入力したところ"/>
+<img src="/safari-2.png" alt="図2: 「要素」と入力したところ"/>
 </template>
 <template #3>
-<img src="./safari-3.png" alt="図3: 変換確定のEnterを押したら送信されてしまった"/>
+<img src="/safari-3.png" alt="図3: 変換確定のEnterを押したら送信されてしまった"/>
 </template>
 </VSwitch>
 </div>
@@ -915,13 +914,13 @@ document.addEventListener("keydown", (event) => {
   at="1"
   :en-captions="[
     'This is more of a \'side note\'...',
-    'Another solution is add Meta / Ctrl key to submit.',
+    'Another solution, limited to submission, is to add Meta / Ctrl key to submit.',
     'You don\'t have to rely solely on the Enter key for submission.',
     'This is a better option if an app allows line breaks in an input field.'
   ]"
   :ja-captions="[
     'これは蛇足ですが……',
-    '別の解決策は、Meta / Ctrlキーを追加して送信することです。',
+    '送信限定の別の解決策は、Meta / Ctrlキーを追加することです。',
     'そもそもEnterキーだけで送信しなければいいという話ですね。',
     '入力欄で改行ができるようなアプリなら、よりよい選択肢でしょう。'
   ]"
