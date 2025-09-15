@@ -4,7 +4,7 @@
       <slot v-if="primaryLang === 'en'" name="en" />
       <slot v-else-if="primaryLang === 'ja'" name="ja" />
     </p>
-    <p class="secondary" :lang="secondaryLang">
+    <p v-if="!primaryOnly" class="secondary" :lang="secondaryLang">
       <slot v-if="secondaryLang === 'en'" name="en" />
       <slot v-else-if="secondaryLang === 'ja'" name="ja" />
     </p>
@@ -12,9 +12,9 @@
 </template>
 
 <script setup lang="ts">
-import { usePrimaryLang } from '../composables/usePrimaryLang';
+import { usePrimaryLang } from "../composables/usePrimaryLang";
 
-const { primaryLang, secondaryLang } = usePrimaryLang();
+const { primaryLang, secondaryLang, primaryOnly } = usePrimaryLang();
 </script>
 
 <style scoped>

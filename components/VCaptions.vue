@@ -1,39 +1,49 @@
 <script setup lang="ts">
-import VP from './VP.vue'
-import { computed, toRefs } from 'vue'
-import { usePrimaryLang } from '../composables/usePrimaryLang'
+import VP from "./VP.vue";
+import { computed, toRefs } from "vue";
+import { usePrimaryLang } from "../composables/usePrimaryLang";
 
-const { enCaptions, jaCaptions, at = '+1' } = defineProps<{
-  enCaptions: string[]
-  jaCaptions: string[]
-  at?: string | number
-}>()
+const {
+  enCaptions,
+  jaCaptions,
+  at = "+1",
+} = defineProps<{
+  enCaptions: string[];
+  jaCaptions: string[];
+  at?: string | number;
+}>();
 
-const { primaryLang, secondaryLang } = usePrimaryLang()
+const { primaryLang, secondaryLang } = usePrimaryLang();
 
 const combinedCaptions = computed(() => {
-  const maxLength = Math.max(enCaptions.length, jaCaptions.length)
+  const maxLength = Math.max(enCaptions.length, jaCaptions.length);
   return Array.from({ length: maxLength }, (_, index) => ({
-    en: enCaptions[index] || '',
-    ja: jaCaptions[index] || '',
+    en: enCaptions[index] || "",
+    ja: jaCaptions[index] || "",
     slotName: (index + 1).toString(),
-  }))
-})
+  }));
+});
 </script>
 
 <template>
-  <VSwitch :at>
-    <template v-for="(caption, index) in combinedCaptions" :key="index" v-slot:[caption.slotName]>
-      <VP>
-        <template #en>
-          <span v-html="caption.en"></span>
-        </template>
-        <template #ja>
-          <span v-html="caption.ja"></span>
-        </template>
-      </VP>
-    </template>
-  </VSwitch>
+  <div aria-live="polite">
+    <VSwitch :at>
+      <template
+        v-for="(caption, index) in combinedCaptions"
+        :key="index"
+        v-slot:[caption.slotName]
+      >
+        <VP>
+          <template #en>
+            <span v-html="caption.en"></span>
+          </template>
+          <template #ja>
+            <span v-html="caption.ja"></span>
+          </template>
+        </VP>
+      </template>
+    </VSwitch>
+  </div>
 </template>
 
 <style scoped>

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { usePrimaryLang } from "../composables/usePrimaryLang";
 
-const { primaryLang, setJa, setEn } = usePrimaryLang();
+const { primaryLang, primaryOnly, setJa, setEn, togglePrimaryOnly } =
+  usePrimaryLang();
 </script>
 
 <template>
@@ -26,6 +27,12 @@ const { primaryLang, setJa, setEn } = usePrimaryLang();
         v-model="primaryLang"
       />
       English
+    </label>
+
+    <label class="flex items-center gap-2 text-sm">
+      <input type="checkbox" v-model="primaryOnly" />
+      主言語のみ表示 <br />
+      Show primary only
     </label>
   </div>
 </template>

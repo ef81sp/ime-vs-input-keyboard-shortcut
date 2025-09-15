@@ -1,9 +1,9 @@
 <template>
   <component :is="level">
     <span :lang="primaryLang"><slot :name="primaryLang" /></span>
-    <small :lang="secondaryLang" class="ml-8 text-[0.65em]"
-      ><slot :name="secondaryLang"
-    /></small>
+    <small v-if="!primaryOnly" :lang="secondaryLang" class="ml-8 text-[0.65em]">
+      <slot :name="secondaryLang" />
+    </small>
   </component>
 </template>
 
@@ -20,5 +20,5 @@ defineProps({
   },
 });
 
-const { primaryLang, secondaryLang } = usePrimaryLang();
+const { primaryLang, secondaryLang, primaryOnly } = usePrimaryLang();
 </script>

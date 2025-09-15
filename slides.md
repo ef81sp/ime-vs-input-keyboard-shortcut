@@ -59,10 +59,9 @@ layout: two-cols-header
 
 ::left::
 
-- <VP><template #en>father of twin</template>
-  <template #ja>双子の父</template></VP>
-- <VP><template #en>like Vue</template>
-  <template #ja>Vueが好き</template></VP>
+- <VP><template #en>Father of twins</template><template #ja>双子の父</template></VP>
+  - <VP><template #en>Doing my best every day</template> <template #ja>毎日がんばっている</template></VP>
+- <VP><template #en>Vue lover</template><template #ja>Vueが好き</template></VP>
 
 ::right::
 
@@ -958,7 +957,7 @@ formElement.addEventListener("submit", (event) => {
     'In that case, you would need to use the keydown event as we discussed earlier.'
   ]"
   :ja-captions="[
-    'それはそれとして、それが送信であるなら、form要素のsubmitイベントを使うことも検討すべきです。',
+    'それはそれとして、それが送信であるなら、form要素のsubmitイベントも検討すべきです。',
     'これなら、ブラウザが完璧にハンドリングしてくれます。Safariのバグも関係ありません。',
     'ただし、<code>\&\lt\;textarea&gt;</code>の場合は、Enterキーによる送信はできません。',
     'その場合は、これまでのお話のように、keydownイベントを使用する必要があるでしょう。'
