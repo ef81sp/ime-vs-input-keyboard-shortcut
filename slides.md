@@ -62,12 +62,13 @@ layout: two-cols-header
 - <VP><template #en>Father of twins</template><template #ja>双子の父</template></VP>
   - <VP><template #en>Doing my best every day</template> <template #ja>毎日がんばっている</template></VP>
 - <VP><template #en>Vue lover</template><template #ja>Vueが好き</template></VP>
+- <VP><template #en>Bengo4.com / CloudSign</template><template #ja>弁護士ドットコム / クラウドサイン</template></VP>
 
 ::right::
 
 <div class="h-80 flex flex-col justify-end items-end">
 
-![](/icon_shinkansen_sugoi_katai_ice.jpg){class="h-60"}
+![アイコン。新幹線のテーブル上で、ｼﾝｶﾝｾﾝｽｺﾞｲｶﾀｲｱｲｽにスプーンが刺さっている写真。 / Icon: Photo of a spoon stuck into a very hard "Shinkansen Sugoi Katai Ice" on a Shinkansen tray table](/icon_shinkansen_sugoi_katai_ice.jpg){class="h-60"}
 
 X: [@p_craft](https://x.com/p_craft)
 
