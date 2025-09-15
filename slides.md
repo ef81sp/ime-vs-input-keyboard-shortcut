@@ -91,41 +91,27 @@ X: [@p_craft](https://x.com/p_craft)
 ---
 
 <VH level="h1">
-<template #en>Today's Slides</template>
-<template #ja>今日のスライド</template>
-</VH>
-<div class="text-align-center">
-<img src="/QR.png" alt="QR code to access today's slides" class="h-68 mx-auto"/>
-</div>
-
-::captions::
-
-<VCaptions
-  :en-captions="[
-    'Today\'s slides are here. I\'ve also shared them on Twitter.',
-    'The input field demo may not work on smartphones...'
-  ]"
-  :ja-captions="[
-    '今日のスライドはこちらです。Twitterにも流してあります。',
-    '入力欄のデモはスマートフォンだと動かないかもしれませんが……'
-  ]"
-/>
-
----
-
-<VH level="h1">
 <template #en>Conclusion</template>
 <template #ja>結論</template>
 </VH>
 
 <VP class="mb-3">
-<template #en>Let's do this!</template>
-<template #ja>こうしよう！</template>
+<template #en>No shortcuts during IME input!</template>
+<template #ja>IME入力中　ショートカット　動かさないで！</template>
 </VP>
 
 <div class="[&_pre]:text-3.5! [&_pre]:lh-5!">
 
-```js {3-5}
+````md magic-move
+```js {*|*}
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    submit();
+  }
+});
+```
+
+```js {3-5|3-5|*}
 document.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     if (event.isComposing || event.keyCode === 229) {
@@ -135,12 +121,14 @@ document.addEventListener("keydown", (event) => {
   }
 });
 ```
+````
 
 </div>
 
 ::captions::
 
-<VCaptions 
+<VCaptions
+  at="1"
   :en-captions="[
     'IME operations can be hindered by application shortcut keys!',
     'Check <code>KeyboardEvent.isComposing</code> is <strong>false</strong> to avoid interfering with text input.',
@@ -1055,9 +1043,22 @@ document.addEventListener("keydown", (event) => {
 />
 
 ---
-layout: fact
----
+
+<div class="grid grid-cols-2 h-full">
+<div class="flex flex-col justify-center items-center">
 
 End
 
 <PoweredBySlidev />
+
+</div>
+
+<div class="flex flex-col justify-center items-center">
+
+<figure>
+<img src="/QR.png" alt="QR code to access today's slides" class="h-68 mx-auto"/>
+<figcaption class="text-xs text-align-center">今日のスライド <br> Today's slides</figcaption>
+</figure>
+</div>
+
+</div>
