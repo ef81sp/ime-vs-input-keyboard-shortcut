@@ -1,47 +1,65 @@
 <script setup lang="ts">
-import { ref, useTemplateRef } from 'vue'
+import { ref, useTemplateRef } from "vue";
+import { useNav } from "@slidev/client";
+const nav = useNav();
 
-const { type } = defineProps<{ type: 'good' | 'bad' }>()
+const { type } = defineProps<{ type: "good" | "bad" }>();
 
-const inputRef = useTemplateRef('input')
-const showSubmitMessage = ref(false)
-const submittedValue = ref('')
-let timeoutId: ReturnType<typeof setTimeout> | null = null
+const inputRef = useTemplateRef("input");
+const showSubmitMessage = ref(false);
+const submittedValue = ref("");
+let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
 const handleEnter = (e: KeyboardEvent) => {
-  if (type === 'good') {
+  if (type === "good") {
     if (e.isComposing) {
-      return
+      return;
     }
   }
-  submit(inputRef.value!.value)
-}
+  submit(inputRef.value!.value);
+};
 
-const submit = async (text) => {
-  submittedValue.value = text
-  showSubmitMessage.value = true
+const submit = async (text: string) => {
+  submittedValue.value = text;
+  showSubmitMessage.value = true;
   setTimeout(() => {
-    inputRef.value!.value = ""
-  }, 0)
+    inputRef.value!.value = "";
+  }, 0);
   if (timeoutId) {
-    clearTimeout(timeoutId)
+    clearTimeout(timeoutId);
   }
 
   timeoutId = setTimeout(() => {
-    showSubmitMessage.value = false
-  }, 800)
-}
+    showSubmitMessage.value = false;
+  }, 2600);
+};
 
 const blur = (e: KeyboardEvent) => {
   if (e.target === inputRef.value) {
-    inputRef.value!.blur()
+    inputRef.value!.blur();
   }
-}
+};
 </script>
 
 <template>
   <div class="flex items-center gap-2">
-    <input class="input" type="text" ref="input" @keydown.enter.capture="handleEnter" @keydown.escape="blur" />
+    <input
+      class="input"
+      type="text"
+      ref="input"
+      @keydown.enter.capture="handleEnter"
+      @keydown.escape="blur"
+      @keydown.meta.right="
+        (e) => {
+          nav.next();
+        }
+      "
+      @keydown.meta.left="
+        (e) => {
+          nav.prev();
+        }
+      "
+    />
     <div class="relative h-6 w-60">
       <Transition name="slide-up">
         <div v-if="showSubmitMessage" class="absolute inset-0 m-0">

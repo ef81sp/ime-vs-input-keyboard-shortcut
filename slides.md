@@ -181,34 +181,34 @@ document.addEventListener("keydown", (event) => {
 <ShowKeyInput class="absolute right-4 top-4"/>
 
 <div class="flex h-63 items-center">
-<input class="border-2 border-black text-7xl w-full p-4" @keydown.escape="(e) => { if(!e.isComposing) e.target.blur()}" />
+<input class="border-2 border-black text-7xl w-full p-4" @keydown.meta.right="(e) => { $nav.next() }" @keydown.meta.left="(e) => { $nav.prev() }" />
 </div>
 
-<!--
-hashiといれると、随時ひらがなが表示されます。  
-When you type "hashi", hiragana characters appear incrementally.
+::captions::
 
-スペースキーを押すと、漢字に変換されます。  
-Pressing the Space key converts the text to kanji.
-
-もう一度押すと、候補の一覧が出て、どんどん移動できます。  
-Press it again to open the candidate list and navigate through the options.
-
-Tabやカーソルキーでも移動できます。  
-You can also move through candidates using Tab or the arrow keys.
-
-Escを押すと変換前の状態に戻れます。  
-Press Esc to cancel the composition and revert to the pre-conversion text.
-
-最初のスペースキーの代わりにTabキーを押すと、補完ができます。  
-If you press Tab instead of the initial Space, you can trigger autocompletion.
-
-Enterキーで確定します。
-Press Enter to confirm.
-
-こんな感じです。  
-That's basically how it works.
--->
+<VCaptions
+at="1"
+:en-captions="[
+'When you type &quot;hashi&quot;, hiragana characters appear incrementally.',
+'Pressing the Space key converts the text to kanji.',
+'Press it again to open the candidate list and navigate through the options.',
+'You can also move through candidates using Tab or the arrow keys.',
+'Press Esc to cancel the composition and revert to the pre-conversion text.',
+'If you press Tab instead of the initial Space, you can trigger autocompletion.',
+'Press Enter to confirm.',
+'That\'s basically how it works.'
+]"
+:ja-captions="[
+'hashiといれると、随時ひらがなが表示されます。',
+'スペースキーを押すと、漢字に変換されます。',
+'もう一度押すと、候補の一覧が出て、どんどん移動できます。',
+'Tabやカーソルキーでも移動できます。',
+'Escを押すと変換前の状態に戻れます。',
+'最初のスペースキーの代わりにTabキーを押すと、補完ができます。',
+'Enterキーで確定します。',
+'こんな感じです。'
+]"
+/>
 
 ---
 
@@ -359,7 +359,7 @@ tbody th {
 
 ---
 
-<VH level="h1">
+<VH level="h1" class="mb-2!">
 <template #en>Bad DEMO</template>
 <template #ja>悪いデモ</template>
 </VH>
@@ -383,19 +383,27 @@ inputElement.addEventListener("keydown", (event) => {
 
 <ShowKeyInput class="absolute right-4 top-4"/>
 
-<!--
-Enterキーで送信できるフォームです。チャットとかでよくあります。\
-It's a form that can be submitted with the Enter key. Often seen in chat applications.
+::captions::
 
-「要素と属性」と少しずつ入力してみます。\
-I will try to input 「要素と属性」 little by little.
-
-ここでいったん確定のためにEnterキーを押します。\
-Here, I press the Enter key to confirm once.
-
-しかし、アプリ側がEnterキーで送信してしまいます。途中にも関わらずです。\
-However, the app side sends it with the Enter key. Despite being in the halfway of input.
--->
+<VCaptions
+at="1"
+:en-captions="[
+'It\'s a form that can be submitted with the Enter key.',
+'Often seen in chat applications.',
+'I will try to input 「要素と属性」 little by little.',
+'Here, I press the Enter key to confirm once.',
+'However, the app side sends it with the Enter key.',
+'Despite being in the halfway of input.'
+]"
+:ja-captions="[
+'Enterキーで送信できるフォームです。',
+'チャットとかでよくあります。',
+'「要素と属性」と少しずつ入力してみます。',
+'ここでいったん確定のためにEnterキーを押します。',
+'しかし、アプリ側がEnterキーで送信してしまいます。',
+'途中にも関わらずです。',
+]"
+/>
 
 ---
 layout: two-cols-header
@@ -575,7 +583,7 @@ document.addEventListener("keydown", (event) => {
 
 ---
 
-<VH level="h1">
+<VH level="h1" class="mb-2!">
 <template #en>Good DEMO</template>
 <template #ja>良いデモ</template>
 </VH>
@@ -583,7 +591,7 @@ document.addEventListener("keydown", (event) => {
 1. Input "<ruby>要素<rt>youso</rt>と<rt>to</rt>属性<rt>zokusei</rt></ruby>" (means "elements and attributes")
 2. Hit <kbd>Enter</kbd> to submit
 
-<VFormKeydown class="my-4 flex justify-center" type="good" />
+<VFormKeydown class="my-2 flex justify-center" type="good" />
 
 <div class="[&_pre]:text-3!">
 
@@ -602,16 +610,25 @@ inputElement.addEventListener("keydown", (event) => {
 
 <ShowKeyInput class="absolute right-4 top-4"/>
 
-<!--
-さっきと同じケースを試してみます。\
-We will try the same case as before.
+::captions::
 
-今度は途中でEnterキーを押しても、送信されません。\
-This time, even if we press the Enter key in the middle, it will not be sent.
-
-無事に最後まで入力して送信できました。\
-We were able to enter and send it safely to the end.
--->
+<VCaptions
+at="1"
+:en-captions="[
+'This time, the form checks <code>event.isComposing</code> before submitting.',
+'If it is true, it means the IME is in the middle of composition, so it does not submit.',
+'Let\'s try the same case as before.',
+'This time, even if we press the Enter key in the middle, it will not be sent.',
+'We were able to enter and send it safely to the end.'
+]"
+:ja-captions="[
+'今回は、送信する前に <code>event.isComposing</code> を確認しています。',
+'もしtrueなら、IMEが編集中なので、送信しません。',
+'さっきと同じケースを試してみます。',
+'今度は途中でEnterキーを押しても、送信されません。',
+'無事に最後まで入力して送信できました。',
+]"
+/>
 
 ---
 layout: two-cols-header
@@ -785,7 +802,7 @@ th {
 
 ---
 
-<VH level="h1">
+<VH level="h1" class="mb-2!">
 <template #en>MDN says...</template>
 <template #ja>MDNによると...</template>
 </VH>
@@ -796,7 +813,12 @@ th {
 
 <div class="h-2"/>
 
-> <strong>メモ:</strong> IME を開くための最初の文字を入力したときに、 <code>compositionstart</code> が <code>keydown</code> の後に発行されることがあります。また、 IME を閉じられり最後の文字を入力したときに、 <code>compositionend</code> が <code>keydown</code> の前に発行されることがあります。これらの場合、イベントが変換の一部であっても、<code>isComposing</code> は false となります。しかし、<span v-mark.highlight.yellow="{at:1,multiline:true}">これらの場合でも <a href="/ja/docs/Web/API/KeyboardEvent/keyCode"><code>KeyboardEvent.keyCode</code></a> は <code>229</code> のままなので、非推奨ではあるものの、やはり <code>keyCode</code> も調べることをお勧めします</span>。
+> <strong>メモ:</strong> IME を開くための最初の文字を入力したときに、 <code>compositionstart</code> が <code>keydown</code> の後に発行されることがあります。また、 IME を閉じる最後の文字を入力したときに、 <code>compositionend</code> が <code>keydown</code> の前に発行されることがあります。これらの場合、イベントが変換の一部であっても、<code>isComposing</code> は false となります。しかし、<span v-mark.highlight.yellow="{at:1,multiline:true}">これらの場合でも <a href="/ja/docs/Web/API/KeyboardEvent/keyCode"><code>KeyboardEvent.keyCode</code></a> は <code>229</code> のままなので、非推奨ではあるものの、やはり <code>keyCode</code> も調べることをお勧めします</span>。
+
+<VP class="text-xs!">
+  <template #en>Note: While the IME is composing, any KeyboardEvent will have keyCode 229.</template>
+  <template #ja>注記: IME入力中に発火したKeyboardイベントのkeyCodeはすべて229になる</template>
+</VP>
 
 ::captions::
 
