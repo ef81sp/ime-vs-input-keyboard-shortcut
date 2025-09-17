@@ -434,16 +434,16 @@ Try to input 「<ruby>日本語が/途中で/送信される<rt>Japanese text is
 
 <VSwitch at="1">
 <template #0-3>
-<img src="/ServiceG-1.png" alt="図1: IMEの入力が進行中のテキスト入力 — 部分的に変換された日本語テキストと候補リストが表示されている。 / Figure 1: Text input with IME composition in progress — partially composed Japanese text and the IME candidate list are visible." />
+<img src="/ServiceG-1.png" alt="[Figure 1] IME composition in progress / [図1] IMEの入力が進行中" />
 </template>
 <template #3-5>
-<img src="/ServiceG-2.png" alt="図2: ユーザーがIMEの候補リストを移動中 — 別の候補がハイライトされ、変換が継続している。 / Figure 2: User navigating the IME candidate list — a different candidate is highlighted while composition continues." />
+<img src="/ServiceG-2.png" alt="[Figure 2] Navigating the IME candidate list / [図2] IMEの候補リストを移動中" />
 </template>
 <template #5-6>
-<img src="/ServiceG-3.png" alt="図3: ユーザーがEnterキーでIMEの候補を確定しようとするが、アプリのEnter処理がIMEと競合して途中で送信されてしまう。 / Figure 3: The user presses Enter to confirm an IME candidate; the app’s Enter handling conflicts with the IME, causing a premature submit." />
+<img src="/ServiceG-3.png" alt="[Figure 3] IME candidate confirmation conflict / [図3] IMEの候補確定時の競合" />
 </template>
 <template #6>
-<img src="/ServiceG-4.png" alt="図4: 送信後の結果 — 部分的に確定された日本語テキストや、早期送信後の入力状態が表示されている。 / Figure 4: Result after submission showing the partially confirmed Japanese text or the input state after the premature submit." />
+<img src="/ServiceG-4.png" alt="[Figure 4] Result after premature submission / [図4] 途中で送信された結果" />
 </template>
 
 </VSwitch>
@@ -498,19 +498,19 @@ Type 「しけん」 and try to find the correct Kanji
 
 <VSwitch at="1">
 <template #1-2>
-<img src="/ServiceS-1.png" alt="図1: 検索ボックスに「しけん」と入力中、IMEの候補リストが表示されている / Figure 1: Typing ‘しけん’ in the search box with IME candidate list visible." />
+<img src="/ServiceS-1.png" alt="[Figure 1] Typing 'しけん' with IME candidate list visible / [図1] 「しけん」と入力中、IMEの候補リストが表示されている" />
 </template>
 <template #2-4>
-<img src="/ServiceS-2.png" alt="図2: IMEで候補を移動・選択している様子（矢印キーやTabで操作） / Figure 2: Navigating and selecting IME candidates (arrow keys / Tab)." />
+<img src="/ServiceS-2.png" alt="[Figure 2] Navigating and selecting IME candidates / [図2] IMEで候補を移動・選択している様子" />
 </template>
 <template #4-5>
-<img src="/ServiceS-3.png" alt="図3: アプリ側の補完候補が表示され、Tabでアプリの候補が選ばれてしまう場面 / Figure 3: App autocomplete appears and Tab selects the app's suggestion, overriding IME." />
+<img src="/ServiceS-3.png" alt="[Figure 3] App autocomplete overrides IME selection / [図3] アプリの補完候補がIMEの選択を上書き" />
 </template>
 <template #5>
-<img src="/ServiceS-4.png" alt="図4: IME操作が妨げられ、意図しない補完や検索候補が入力される結果 / Figure 4: IME operation interfered with, resulting in unintended completion or search input." />
+<img src="/ServiceS-4.png" alt="[Figure 4] Interference with IME operation / [図4] IME操作が妨げられた結果" />
 </template>
 <template #6>
-<img src="/ServiceS-5.png" alt="図5: 最終的に誤った文字列や途中の確定が入力される（ユーザー体験の問題） / Figure 5: Final state showing incorrect or prematurely confirmed text (user-impacting issue)." />
+<img src="/ServiceS-5.png" alt="[Figure 5] Final state with incorrect or premature text / [図5] 最終的に誤った文字列や途中の確定が入力された状態" />
 </template>
 </VSwitch>
 </div>
@@ -664,13 +664,13 @@ layout: two-cols-header
 
 <VSwitch at="1">
 <template #1>
-<img src="/safari-1.png" alt="図1: 先ほどのサンプルをSafariで表示している"/>
+<img src="/safari-1.png" alt="[Figure 1] Safari displaying the sample / [図1] Safariでサンプルを表示中" />
 </template>
 <template #2>
-<img src="/safari-2.png" alt="図2: 「要素」と入力したところ"/>
+<img src="/safari-2.png" alt="[Figure 2] Typing '要素' in Safari / [図2] Safariで「要素」と入力中" />
 </template>
 <template #3>
-<img src="/safari-3.png" alt="図3: 変換確定のEnterを押したら送信されてしまった"/>
+<img src="/safari-3.png" alt="[Figure 3] Premature submission on Enter key press / [図3] Enterキー押下での途中送信" />
 </template>
 </VSwitch>
 </div>
@@ -1002,30 +1002,48 @@ drawings:
 
 <div class="flex justify-center">
 
-![アクセシビリティ（a11y）とWCAGの関係を示すベン図 — WCAGはアクセシビリティ要件の一部をカバーするが全てを網羅しているわけではない / Venn diagram showing the relationship between accessibility (a11y) and WCAG — WCAG covers some but not all accessibility requirements](/a11y_wcag_venn.svg){class="w-82 mt-[-3rem]"}
+<VSwitch aria-live="polite">
+<template #0-2>
+<img src="/venn_1.svg" alt="[Figure 1] Diagram showing a single dot labeled 'This issue' / [図1] 'This issue'と書かれた点が表示されている" class="w-82 mt-[-3rem]" />
+</template>
+<template #2-5>
+<img src="/venn_2.svg" alt="[Figure 2] Venn-style diagram with a dot labeled 'This issue' adjacent to (non-overlapping) a circle labeled 'WCAG' / [図2] 'This issue'と書かれた点と、'WCAG'と書かれた円がベン図として表示されている。重ならず、隣り合っている。" class="w-82 mt-[-3rem]" />
+</template>
+<template #5>
+<img src="/venn_3.svg" alt="[Figure 3] Venn-style diagram with a dot labeled 'This issue' adjacent to (non-overlapping) a circle labeled 'WCAG = known issues' / [図3] 'This issue'と書かれた点と、'WCAG = known issues'と書かれた円がベン図として表示されている。重ならず、隣り合っている。" class="w-82 mt-[-3rem]" />
+</template>
+<template #6-10>
+<img src="/venn_4.svg" alt="[Figure 4] Diagram showing a large circle labeled 'a11y issues include unknown issues' that encompasses the previous elements / [図4] これまでのものを包含する、'a11y issues include unknown issues'と書かれた円が表示されている。" class="w-82 mt-[-3rem]" />
+</template>
+</VSwitch>
 
 </div>
 
 ::captions::
 
 <VCaptions
+at="1"
 :en-captions="[
-  'I consider this an accessibility issue,',
-  'but it is not covered by WCAG.',
-  'Of course, WCAG does not cover all accessibility issues.',
-  'This issue arises because it is unknown to implementers.',
-  'There must be other unknown issues like this.',
-  'Therefore, if we are stakeholders, we should raise our voices,',
-  'and it\'s important for developers to listen to users\' voices.',
+'I consider this an accessibility issue,',
+'but it is not covered by WCAG.',
+'Of course, WCAG does not cover all accessibility issues.',
+'We can address issues covered by WCAG.',
+'This is because we &quot;know&quot; those issues.',
+'Conversely, the issue arises because it is &quot;unknown&quot; to implementers.',
+'Other unknown accessibility issues like this one must exist.',
+'Therefore, if we are stakeholders, we should raise our voices,',
+'and it\'s important for developers to listen to users\' voices.',
 ]"
 :ja-captions="[
-  'わたしはこれをアクセシビリティの問題だと考えていますが、',
-  'WCAGではカバーされていません。',
-  '当然ながら、WCAGがすべてのアクセシビリティ課題をカバーしているわけではありません。',
-  '今回の問題は、実装者にとって未知だから発生しています。',
-  'このような未知の問題は、ほかにも必ずあるはずです。',
-  'ですから、自分たちが当事者であれば、しっかり声を上げなければなりませんし、',
-  '開発者はユーザーの声に耳を傾けることが重要です。',
+'わたしはこれをアクセシビリティの問題だと考えていますが、',
+'WCAGではカバーされていません。',
+'当然ながら、WCAGがすべてのアクセシビリティ課題をカバーしているわけではありません。',
+'WCAGにカバーされている問題は、わたしたちは対処することができます。',
+'これは、その問題を「知っている」からです。',
+'逆に言えば、今回の問題は、実装者にとって「未知」だから発生しています。',
+'このような未知のアクセシビリティ問題は、ほかにも必ずあるはずです。',
+'ですから、自分たちが当事者であれば、しっかり声を上げなければなりませんし、',
+'開発者はユーザーの声に耳を傾けることが重要です。',
 ]"
 />
 
