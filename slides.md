@@ -349,7 +349,7 @@ tbody th {
 </VH>
 
 <div class="flex justify-center space-x-4">
-<img src="/boxing.png" alt="ボクシングのイラスト。「IME Shortcuts」の青いボクサーと、「Web App Shortcuts」の赤いボクサーが戦っている。 / Boxing illustration. The blue boxer represents 'IME Shortcuts' and the red boxer represents 'Web App Shortcuts' are fighting." class="h-74"/>
+<VImg src="/boxing.png" altJa="ボクシングのイラスト。「IME Shortcuts」の青いボクサーと、「Web App Shortcuts」の赤いボクサーが戦っている。" altEn="Boxing illustration. The blue boxer represents 'IME Shortcuts' and the red boxer represents 'Web App Shortcuts' are fighting." class="h-74"/>
 </div>
 
 ::captions::
@@ -434,16 +434,16 @@ Try to input 「<ruby>日本語が/途中で/送信される<rt>Japanese text is
 
 <VSwitch at="1">
 <template #0-3>
-<img src="/ServiceG-1.png" alt="[Figure 1] IME composition in progress / [図1] IMEの入力が進行中" />
+<VImg src="/ServiceG-1.png" altJa="[図1] IMEの入力が進行中" altEn="[Figure 1] IME composition in progress" />
 </template>
 <template #3-5>
-<img src="/ServiceG-2.png" alt="[Figure 2] Navigating the IME candidate list / [図2] IMEの候補リストを移動中" />
+<VImg src="/ServiceG-2.png" altJa="[図2] IMEの候補リストを移動中" altEn="[Figure 2] Navigating the IME candidate list" />
 </template>
 <template #5-6>
-<img src="/ServiceG-3.png" alt="[Figure 3] IME candidate confirmation conflict / [図3] IMEの候補確定時の競合" />
+<VImg src="/ServiceG-3.png" altJa="[図3] IMEの候補確定時の競合" altEn="[Figure 3] IME candidate confirmation conflict" />
 </template>
 <template #6>
-<img src="/ServiceG-4.png" alt="[Figure 4] Result after premature submission / [図4] 途中で送信された結果" />
+<VImg src="/ServiceG-4.png" altJa="[図4] 途中で送信された結果" altEn="[Figure 4] Result after premature submission" />
 </template>
 
 </VSwitch>
@@ -498,19 +498,19 @@ Type 「しけん」 and try to find the correct Kanji
 
 <VSwitch at="1">
 <template #1-2>
-<img src="/ServiceS-1.png" alt="[Figure 1] Typing 'しけん' with IME candidate list visible / [図1] 「しけん」と入力中、IMEの候補リストが表示されている" />
+<VImg src="/ServiceS-1.png" altJa="[図1] 「しけん」と入力中、IMEの候補リストが表示されている" altEn="[Figure 1] Typing 'しけん' with IME candidate list visible" />
 </template>
 <template #2-4>
-<img src="/ServiceS-2.png" alt="[Figure 2] Navigating and selecting IME candidates / [図2] IMEで候補を移動・選択している様子" />
+<VImg src="/ServiceS-2.png" altJa="[図2] IMEで候補を移動・選択している様子" altEn="[Figure 2] Navigating and selecting IME candidates" />
 </template>
 <template #4-5>
-<img src="/ServiceS-3.png" alt="[Figure 3] App autocomplete overrides IME selection / [図3] アプリの補完候補がIMEの選択を上書き" />
+<VImg src="/ServiceS-3.png" altJa="[図3] アプリの補完候補がIMEの選択を上書き" altEn="[Figure 3] App autocomplete overrides IME selection" />
 </template>
 <template #5>
-<img src="/ServiceS-4.png" alt="[Figure 4] Interference with IME operation / [図4] IME操作が妨げられた結果" />
+<VImg src="/ServiceS-4.png" altJa="[図4] IME操作が妨げられた結果" altEn="[Figure 4] Interference with IME operation" />
 </template>
 <template #6>
-<img src="/ServiceS-5.png" alt="[Figure 5] Final state with incorrect or premature text / [図5] 最終的に誤った文字列や途中の確定が入力された状態" />
+<VImg src="/ServiceS-5.png" altJa="[図5] 最終的に誤った文字列や途中の確定が入力された状態" altEn="[Figure 5] Final state with incorrect or premature text" />
 </template>
 </VSwitch>
 </div>
@@ -664,13 +664,13 @@ layout: two-cols-header
 
 <VSwitch at="1">
 <template #1>
-<img src="/safari-1.png" alt="[Figure 1] Safari displaying the sample / [図1] Safariでサンプルを表示中" />
+<VImg src="/safari-1.png" altJa="[図1] Safariでサンプルを表示中" altEn="[Figure 1] Safari displaying the sample" />
 </template>
 <template #2>
-<img src="/safari-2.png" alt="[Figure 2] Typing '要素' in Safari / [図2] Safariで「要素」と入力中" />
+<VImg src="/safari-2.png" altJa="[図2] Safariで「要素」と入力中" altEn="[Figure 2] Typing '要素' in Safari" />
 </template>
 <template #3>
-<img src="/safari-3.png" alt="[Figure 3] Premature submission on Enter key press / [図3] Enterキー押下での途中送信" />
+<VImg src="/safari-3.png" altJa="[図3] Enterキー押下での途中送信" altEn="[Figure 3] Premature submission on Enter key press" />
 </template>
 </VSwitch>
 </div>
@@ -1004,16 +1004,16 @@ drawings:
 
 <VSwitch aria-live="polite">
 <template #0-2>
-<img src="/venn_1.svg" alt="[Figure 1] Diagram showing a single dot labeled 'This issue' / [図1] 'This issue'と書かれた点が表示されている" class="w-82 mt-[-3rem]" />
+<VImg src="/venn_1.svg" altJa="[図1] 'This issue'と書かれた点が表示されている" altEn="[Figure 1] Diagram showing a single dot labeled 'This issue'" class="w-82 mt-[-3rem]" />
 </template>
 <template #2-5>
-<img src="/venn_2.svg" alt="[Figure 2] Venn-style diagram with a dot labeled 'This issue' adjacent to (non-overlapping) a circle labeled 'WCAG' / [図2] 'This issue'と書かれた点と、'WCAG'と書かれた円がベン図として表示されている。重ならず、隣り合っている。" class="w-82 mt-[-3rem]" />
+<VImg src="/venn_2.svg" altJa="[図2] 'This issue'と書かれた点と、'WCAG'と書かれた円がベン図として表示されている。重ならず、隣り合っている。" altEn="[Figure 2] Venn-style diagram with a dot labeled 'This issue' adjacent to (non-overlapping) a circle labeled 'WCAG'" class="w-82 mt-[-3rem]" />
 </template>
 <template #5>
-<img src="/venn_3.svg" alt="[Figure 3] Venn-style diagram with a dot labeled 'This issue' adjacent to (non-overlapping) a circle labeled 'WCAG = known issues' / [図3] 'This issue'と書かれた点と、'WCAG = known issues'と書かれた円がベン図として表示されている。重ならず、隣り合っている。" class="w-82 mt-[-3rem]" />
+<VImg src="/venn_3.svg" altJa="[図3] 'This issue'と書かれた点と、'WCAG = known issues'と書かれた円がベン図として表示されている。重ならず、隣り合っている。" altEn="[Figure 3] Venn-style diagram with a dot labeled 'This issue' adjacent to (non-overlapping) a circle labeled 'WCAG = known issues'" class="w-82 mt-[-3rem]" />
 </template>
 <template #6-10>
-<img src="/venn_4.svg" alt="[Figure 4] Diagram showing a large circle labeled 'a11y issues include unknown issues' that encompasses the previous elements / [図4] これまでのものを包含する、'a11y issues include unknown issues'と書かれた円が表示されている。" class="w-82 mt-[-3rem]" />
+<VImg src="/venn_4.svg" altJa="[図4] これまでのものを包含する、'a11y issues include unknown issues'と書かれた円が表示されている。" altEn="[Figure 4] Diagram showing a large circle labeled 'a11y issues include unknown issues' that encompasses the previous elements" class="w-82 mt-[-3rem]" />
 </template>
 </VSwitch>
 
@@ -1105,7 +1105,7 @@ End
 <div class="flex flex-col justify-center items-center">
 
 <figure>
-<img src="/QR.png" alt="QR code to access today's slides" class="h-68 mx-auto"/>
+<VImg src="/QR.png" altJa="QRコード" altEn="QR code" class="h-68 mx-auto"/>
 <figcaption class="text-xs text-align-center">今日のスライド <br> Today's slides</figcaption>
 </figure>
 </div>
