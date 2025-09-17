@@ -74,7 +74,7 @@ layout: two-cols-header
 
 <div class="h-80 flex flex-col justify-end items-end">
 
-![アイコン。新幹線のテーブル上で、ｼﾝｶﾝｾﾝｽｺﾞｲｶﾀｲｱｲｽにスプーンが刺さっている写真。 / Icon: Photo of a spoon stuck into a very hard "Shinkansen Sugoi Katai Ice" on a Shinkansen tray table](/icon_shinkansen_sugoi_katai_ice.jpg){class="h-60"}
+<VImg src="/icon_shinkansen_sugoi_katai_ice.jpg" altJa="アイコン。新幹線のテーブル上で、ｼﾝｶﾝｾﾝｽｺﾞｲｶﾀｲｱｲｽにスプーンが刺さっている写真。" altEn="Icon: Photo of a spoon stuck into a very hard 'Shinkansen Sugoi Katai Ice' on a Shinkansen tray table" class="h-60"/>
 
 X: [@p_craft](https://x.com/p_craft)
 
@@ -89,8 +89,8 @@ X: [@p_craft](https://x.com/p_craft)
 
 - <VP><template #en>Is there anyone who prefers English?</template>
   <template #ja>英語での発表がいい人いますか？</template></VP>
-- <VP><template #en>This is something I'd like non-Japanese speakers to be aware of.</template>
-  <template #ja>テーマ的に非日本語話者にこそ知ってほしい内容です</template></VP>
+- <VP><template #en>This is something I'd like people unfamiliar with Japanese to be aware of.</template>
+  <template #ja>日本語に詳しくない方にこそ知ってほしい内容です</template></VP>
 
 <SelectLang />
 
@@ -139,15 +139,17 @@ document.addEventListener("keydown", (event) => {
     'IME operations can be hindered by application shortcut keys!',
     'Check <code>KeyboardEvent.isComposing</code> is <strong>false</strong> to avoid interfering with text input.',
     'Also check <code>KeyboardEvent.keyCode</code> is <strong>229</strong>, although it is deprecated.',
-    'This is an accessibility issue not covered by WCAG, but',
-    'crucial for IME users who perform character conversion.'
+    'I recognize this as an accessibility issue not covered by WCAG.',
+    'IME users who perform character conversion, such as Japanese people, face significant difficulties.',
+    'Everyone! 120 million people!'
   ]"
   :ja-captions="[
     'IMEの操作がアプリのショートカットキーによって妨げられることがあります！',
     '入力を妨げないよう、<code>KeyboardEvent.isComposing</code>が <strong>false</strong> であることを確認しましょう。',
     'また、非推奨プロパティですが、<code>KeyboardEvent.keyCode</code>が<strong>229</strong>であることも確認しましょう。',
-    'これはWCAGでカバーされていないアクセシビリティ課題ですが、',
-    'IMEで文字変換を行うユーザーにとって非常に重要です。'
+    'わたしはこれをWCAGでカバーされていないアクセシビリティ課題と認識しています。',
+    'IMEで文字変換を行うユーザー、つまり少なくとも日本人は大変困るのです。',
+    '全員です！1億2千万人です！'
   ]"
 />
 
