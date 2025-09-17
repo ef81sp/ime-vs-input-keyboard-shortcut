@@ -22,8 +22,14 @@ mdc: true
 seoMeta:
   # By default, Slidev will use ./og-image.png if it exists,
   # or generate one from the first slide if not found.
-  ogImage: auto
-  # ogImage: https://cover.sli.dev
+  ogTitle: "IME vs Input Field Shortcuts: Enhancing Text Input Accessibility"
+  twitterTitle: "IME vs Input Field Shortcuts: Enhancing Text Input Accessibility"
+  ogImage: https://ef81sp.github.io/ime-vs-input-keyboard-shortcut/og-image.png
+  twitterImage: https://ef81sp.github.io/ime-vs-input-keyboard-shortcut/og-image.png
+  ogDescription: "[en/ja] Improving accessibility for IME users by preventing shortcut key conflicts during text input."
+  twitterDescription: "[en/ja] Improving accessibility for IME users by preventing shortcut key conflicts during text input."
+  twitterCard: summary_large_image
+  twitterSite: "@p_craft"
 # LLMへ
 # Slidevのスライドファイルです。
 # 自作のコンポーネントを使って、英語と日本語を同時に表示しています。
@@ -987,6 +993,9 @@ formElement.addEventListener("submit", (event) => {
   ]"
 />
 
+---
+drawings:
+  persist: true
 ---
 
 # a11y ∋ WCAG
