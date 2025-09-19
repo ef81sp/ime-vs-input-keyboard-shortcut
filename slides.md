@@ -72,9 +72,13 @@ layout: two-cols-header
 
 ::right::
 
-<div class="h-80 flex flex-col justify-end items-end">
+<script setup lang="ts">
+import { usePrimaryLang } from "./composables/usePrimaryLang";
+const { primaryLang } = usePrimaryLang();
+</script>
 
-<VImg src="/icon_shinkansen_sugoi_katai_ice.jpg" altJa="アイコン。新幹線のテーブル上で、ｼﾝｶﾝｾﾝｽｺﾞｲｶﾀｲｱｲｽにスプーンが刺さっている写真。" altEn="Icon: Photo of a spoon stuck into a very hard 'Shinkansen Sugoi Katai Ice' on a Shinkansen tray table" class="h-60"/>
+<div class="h-80 flex flex-col justify-end items-end">
+<img src="/icon_shinkansen_sugoi_katai_ice.jpg" :alt="primaryLang === 'ja' ? 'アイコン。新幹線のテーブル上で、ｼﾝｶﾝｾﾝｽｺﾞｲｶﾀｲｱｲｽにスプーンが刺さっている写真。' : 'Icon: Photo of a spoon stuck into a very hard \'Shinkansen Sugoi Katai Ice\' on a Shinkansen tray table'" class="h-60" />
 
 X: [@p_craft](https://x.com/p_craft)
 
@@ -86,6 +90,8 @@ X: [@p_craft](https://x.com/p_craft)
 <template #en>Enquete</template>
 <template #ja>アンケート</template>
 </VH>
+
+{{primaryLang}}
 
 - <VP><template #en>Is there anyone who prefers English?</template>
   <template #ja>英語での発表がいい人いますか？</template></VP>
@@ -350,8 +356,13 @@ tbody th {
 <template #ja>問題</template>
 </VH>
 
+<script setup lang="ts">
+import { usePrimaryLang } from "./composables/usePrimaryLang";
+const { primaryLang } = usePrimaryLang();
+</script>
+
 <div class="flex justify-center space-x-4">
-<VImg src="/boxing.png" altJa="ボクシングのイラスト。「IME Shortcuts」の青いボクサーと、「Web App Shortcuts」の赤いボクサーが戦っている。" altEn="Boxing illustration. The blue boxer represents 'IME Shortcuts' and the red boxer represents 'Web App Shortcuts' are fighting." class="h-74"/>
+<img src="/boxing.png" :alt="primaryLang === 'ja' ? 'ボクシングのイラスト。「IME Shortcuts」の青いボクサーと、「Web App Shortcuts」の赤いボクサーが戦っている。' : 'Boxing illustration. The blue boxer represents \'IME Shortcuts\' and the red boxer represents \'Web App Shortcuts\' are fighting.'" class="h-74"/>
 </div>
 
 ::captions::
@@ -422,6 +433,11 @@ layout: two-cols-header
 <template #ja>問題例: "G"</template>
 </VH>
 
+<script setup lang="ts">
+import { usePrimaryLang } from "./composables/usePrimaryLang";
+const { primaryLang } = usePrimaryLang();
+</script>
+
 Try to input 「<ruby>日本語が/途中で/送信される<rt>Japanese text is sent halfway through</rt></ruby>」 incrementally.
 
 ::left::
@@ -436,16 +452,16 @@ Try to input 「<ruby>日本語が/途中で/送信される<rt>Japanese text is
 
 <VSwitch at="1">
 <template #0-3>
-<VImg src="/ServiceG-1.png" altJa="[図1] IMEの入力が進行中" altEn="[Figure 1] IME composition in progress" />
+<img src="/ServiceG-1.png" :alt="primaryLang === 'ja' ? '[図1] IMEの入力が進行中' : '[Figure 1] IME composition in progress'" />
 </template>
 <template #3-5>
-<VImg src="/ServiceG-2.png" altJa="[図2] IMEの候補リストを移動中" altEn="[Figure 2] Navigating the IME candidate list" />
+<img src="/ServiceG-2.png" :alt="primaryLang === 'ja' ? '[図2] IMEの候補リストを移動中' : '[Figure 2] Navigating the IME candidate list'" />
 </template>
 <template #5-6>
-<VImg src="/ServiceG-3.png" altJa="[図3] IMEの候補確定時の競合" altEn="[Figure 3] IME candidate confirmation conflict" />
+<img src="/ServiceG-3.png" :alt="primaryLang === 'ja' ? '[図3] IMEの候補確定時の競合' : '[Figure 3] IME candidate confirmation conflict'" />
 </template>
 <template #6>
-<VImg src="/ServiceG-4.png" altJa="[図4] 途中で送信された結果" altEn="[Figure 4] Result after premature submission" />
+<img src="/ServiceG-4.png" :alt="primaryLang === 'ja' ? '[図4] 途中で送信された結果' : '[Figure 4] Result after premature submission'" />
 </template>
 
 </VSwitch>
@@ -480,6 +496,11 @@ layout: two-cols-header
 <template #ja>問題例: "S"</template>
 </VH>
 
+<script setup lang="ts">
+import { usePrimaryLang } from "./composables/usePrimaryLang";
+const { primaryLang } = usePrimaryLang();
+</script>
+
 Type 「しけん」 and try to find the correct Kanji
 
 ::left::
@@ -500,19 +521,19 @@ Type 「しけん」 and try to find the correct Kanji
 
 <VSwitch at="1">
 <template #1-2>
-<VImg src="/ServiceS-1.png" altJa="[図1] 「しけん」と入力中、IMEの候補リストが表示されている" altEn="[Figure 1] Typing 'しけん' with IME candidate list visible" />
+<img src="/ServiceS-1.png" :alt="primaryLang === 'ja' ? '[図1] 「しけん」と入力中、IMEの候補リストが表示されている' : '[Figure 1] Typing \'しけん\' with IME candidate list visible'" />
 </template>
 <template #2-4>
-<VImg src="/ServiceS-2.png" altJa="[図2] IMEで候補を移動・選択している様子" altEn="[Figure 2] Navigating and selecting IME candidates" />
+<img src="/ServiceS-2.png" :alt="primaryLang === 'ja' ? '[図2] IMEで候補を移動・選択している様子' : '[Figure 2] Navigating and selecting IME candidates'" />
 </template>
 <template #4-5>
-<VImg src="/ServiceS-3.png" altJa="[図3] アプリの補完候補がIMEの選択を上書き" altEn="[Figure 3] App autocomplete overrides IME selection" />
+<img src="/ServiceS-3.png" :alt="primaryLang === 'ja' ? '[図3] アプリの補完候補がIMEの選択を上書き' : '[Figure 3] App autocomplete overrides IME selection'" />
 </template>
 <template #5>
-<VImg src="/ServiceS-4.png" altJa="[図4] IME操作が妨げられた結果" altEn="[Figure 4] Interference with IME operation" />
+<img src="/ServiceS-4.png" :alt="primaryLang === 'ja' ? '[図4] IME操作が妨げられた結果' : '[Figure 4] Interference with IME operation'" />
 </template>
 <template #6>
-<VImg src="/ServiceS-5.png" altJa="[図5] 最終的に誤った文字列や途中の確定が入力された状態" altEn="[Figure 5] Final state with incorrect or premature text" />
+<img src="/ServiceS-5.png" :alt="primaryLang === 'ja' ? '[図5] 最終的に誤った文字列や途中の確定が入力された状態' : '[Figure 5] Final state with incorrect or premature text'" />
 </template>
 </VSwitch>
 </div>
@@ -647,6 +668,11 @@ layout: two-cols-header
 <template #ja>しかし……</template>
 </VH>
 
+<script setup lang="ts">
+import { usePrimaryLang } from "./composables/usePrimaryLang";
+const { primaryLang } = usePrimaryLang();
+</script>
+
 **Safari** has a bug with `KeyboardEvent.isComposing`.
 
 ::left::
@@ -666,13 +692,13 @@ layout: two-cols-header
 
 <VSwitch at="1">
 <template #1>
-<VImg src="/safari-1.png" altJa="[図1] Safariでサンプルを表示中" altEn="[Figure 1] Safari displaying the sample" />
+<img src="/safari-1.png" :alt="primaryLang === 'ja' ? '[図1] Safariでサンプルを表示中' : '[Figure 1] Safari displaying the sample'" />
 </template>
 <template #2>
-<VImg src="/safari-2.png" altJa="[図2] Safariで「要素」と入力中" altEn="[Figure 2] Typing '要素' in Safari" />
+<img src="/safari-2.png" :alt="primaryLang === 'ja' ? '[図2] Safariで「要素」と入力中' : '[Figure 2] Typing \'要素\' in Safari'" />
 </template>
 <template #3>
-<VImg src="/safari-3.png" altJa="[図3] Enterキー押下での途中送信" altEn="[Figure 3] Premature submission on Enter key press" />
+<img src="/safari-3.png" :alt="primaryLang === 'ja' ? '[図3] Enterキー押下での途中送信' : '[Figure 3] Premature submission on Enter key press'" />
 </template>
 </VSwitch>
 </div>
@@ -1002,20 +1028,25 @@ drawings:
 
 # a11y ∋ WCAG
 
+<script setup lang="ts">
+import { usePrimaryLang } from "./composables/usePrimaryLang";
+const { primaryLang } = usePrimaryLang();
+</script>
+
 <div class="flex justify-center">
 
 <VSwitch aria-live="polite">
 <template #0-2>
-<VImg src="/venn_1.svg" altJa="[図1] 'This issue'と書かれた点が表示されている" altEn="[Figure 1] Diagram showing a single dot labeled 'This issue'" class="w-82 mt-[-3rem]" />
+<img src="/venn_1.svg" :alt="primaryLang === 'ja' ? '[図1] \'This issue\'と書かれた点が表示されている' : '[Figure 1] Diagram showing a single dot labeled \'This issue\''" class="w-82 mt-[-3rem]" />
 </template>
 <template #2-5>
-<VImg src="/venn_2.svg" altJa="[図2] 'This issue'と書かれた点と、'WCAG'と書かれた円がベン図として表示されている。重ならず、隣り合っている。" altEn="[Figure 2] Venn-style diagram with a dot labeled 'This issue' adjacent to (non-overlapping) a circle labeled 'WCAG'" class="w-82 mt-[-3rem]" />
+<img src="/venn_2.svg" :alt="primaryLang === 'ja' ? '[図2] \'This issue\'と書かれた点と、\'WCAG\'と書かれた円がベン図として表示されている。重ならず、隣り合っている。' : '[Figure 2] Venn-style diagram with a dot labeled \'This issue\' adjacent to (non-overlapping) a circle labeled \'WCAG\''" class="w-82 mt-[-3rem]" />
 </template>
 <template #5>
-<VImg src="/venn_3.svg" altJa="[図3] 'This issue'と書かれた点と、'WCAG = known issues'と書かれた円がベン図として表示されている。重ならず、隣り合っている。" altEn="[Figure 3] Venn-style diagram with a dot labeled 'This issue' adjacent to (non-overlapping) a circle labeled 'WCAG = known issues'" class="w-82 mt-[-3rem]" />
+<img src="/venn_3.svg" :alt="primaryLang === 'ja' ? '[図3] \'This issue\'と書かれた点と、\'WCAG = known issues\'と書かれた円がベン図として表示されている。重ならず、隣り合っている。' : '[Figure 3] Venn-style diagram with a dot labeled \'This issue\' adjacent to (non-overlapping) a circle labeled \'WCAG = known issues\''" class="w-82 mt-[-3rem]" />
 </template>
 <template #6-10>
-<VImg src="/venn_4.svg" altJa="[図4] これまでのものを包含する、'a11y issues include unknown issues'と書かれた円が表示されている。" altEn="[Figure 4] Diagram showing a large circle labeled 'a11y issues include unknown issues' that encompasses the previous elements" class="w-82 mt-[-3rem]" />
+<img src="/venn_4.svg" :alt="primaryLang === 'ja' ? '[図4] これまでのものを包含する、\'a11y issues include unknown issues\'と書かれた円が表示されている。' : '[Figure 4] Diagram showing a large circle labeled \'a11y issues include unknown issues\' that encompasses the previous elements'" class="w-82 mt-[-3rem]" />
 </template>
 </VSwitch>
 
@@ -1095,6 +1126,11 @@ document.addEventListener("keydown", (event) => {
 
 ---
 
+<script setup lang="ts">
+import { usePrimaryLang } from "./composables/usePrimaryLang";
+const { primaryLang } = usePrimaryLang();
+</script>
+
 <div class="grid grid-cols-2 h-full">
 <div class="flex flex-col justify-center items-center">
 
@@ -1107,7 +1143,7 @@ End
 <div class="flex flex-col justify-center items-center">
 
 <figure>
-<VImg src="/QR.png" altJa="QRコード" altEn="QR code" class="h-68 mx-auto"/>
+<img src="/QR.png" :alt="primaryLang === 'ja' ? 'QRコード' : 'QR code'" class="h-68 mx-auto"/>
 <figcaption class="text-xs text-align-center">今日のスライド <br> Today's slides</figcaption>
 </figure>
 </div>
