@@ -251,7 +251,7 @@ const { isVideo } = useIsVideo();
 <VCaptions
 at="1"
 :en-captions="[
-'Let\'s see how it actually works.',
+'Let\'s try it out.',
 'When you type &quot;hashi&quot;, hiragana characters appear incrementally.',
 'Pressing the Space key converts the text to kanji.',
 'Press it again to open the candidate list and navigate through the options.',
@@ -262,7 +262,7 @@ at="1"
 'That\'s basically how it works.'
 ]"
 :ja-captions="[
-  '実際の操作を見てみましょう。',
+'実際の操作を見てみましょう。',
 'hashiといれると、随時ひらがなが表示されます。',
 'スペースキーを押すと、漢字に変換されます。',
 'もう一度押すと、候補の一覧が出て、どんどん移動できます。',
