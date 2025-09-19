@@ -116,7 +116,7 @@ X: [@p_craft](https://x.com/p_craft)
 
 ````md magic-move
 ```js {*|*}
-document.addEventListener("keydown", (event) => {
+inputElement.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     submit();
   }
@@ -124,7 +124,7 @@ document.addEventListener("keydown", (event) => {
 ```
 
 ```js {3-5|3-5|*}
-document.addEventListener("keydown", (event) => {
+inputElement.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     if (event.isComposing || event.keyCode === 229) {
       return;
@@ -645,7 +645,7 @@ Type 「しけん」 and try to find the correct Kanji
 
 ````md magic-move
 ```js {*|*|*}
-document.addEventListener("keydown", (event) => {
+inputElement.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     submit();
   }
@@ -653,7 +653,7 @@ document.addEventListener("keydown", (event) => {
 ```
 
 ```js {3-5|*}
-document.addEventListener("keydown", (event) => {
+inputElement.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     if (event.isComposing) {
       return;
@@ -970,7 +970,7 @@ blockquote {
 
 ````md magic-move
 ```js {*}
-document.addEventListener("keydown", (event) => {
+inputElement.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     if (event.isComposing) {
       return;
@@ -981,7 +981,7 @@ document.addEventListener("keydown", (event) => {
 ```
 
 ```js {3|*}
-document.addEventListener("keydown", (event) => {
+inputElement.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     if (event.isComposing || event.keyCode === 229) {
       return;
@@ -1020,7 +1020,7 @@ document.addEventListener("keydown", (event) => {
 
 ````md magic-move
 ```js {*|*}
-document.addEventListener("keydown", (event) => {
+inputElement.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     if (event.isComposing) {
       return;
@@ -1031,7 +1031,7 @@ document.addEventListener("keydown", (event) => {
 ```
 
 ```js {2|*}
-document.addEventListener("keydown", (event) => {
+inputElement.addEventListener("keydown", (event) => {
   if (event.key === "Enter" && (event.metaKey || event.ctrlKey)) {
     if (event.isComposing) {
       return;
@@ -1186,7 +1186,7 @@ h1 {
 <div class="[&_pre]:text-3.5! [&_pre]:lh-5!">
 
 ```js {3-5}
-document.addEventListener("keydown", (event) => {
+inputElement.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     if (event.isComposing || event.keyCode === 229) {
       return;
