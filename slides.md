@@ -146,7 +146,8 @@ document.addEventListener("keydown", (event) => {
     'Check <code>KeyboardEvent.isComposing</code> is <strong>false</strong> to avoid interfering with text input.',
     'Also check <code>KeyboardEvent.keyCode</code> is <strong>229</strong>, although it is deprecated.',
     'I recognize this as an accessibility issue not covered by WCAG.',
-    'IME users who perform character conversion, such as Japanese people, face significant difficulties.',
+    'IME users who perform character conversion,',
+    'such as Japanese people, face significant difficulties.',
     'Everyone! 120 million people!'
   ]"
   :ja-captions="[
@@ -154,7 +155,8 @@ document.addEventListener("keydown", (event) => {
     '入力を妨げないよう、<code>KeyboardEvent.isComposing</code>が <strong>false</strong> であることを確認しましょう。',
     'また、非推奨プロパティですが、<code>KeyboardEvent.keyCode</code>が<strong>229</strong>であることも確認しましょう。',
     'わたしはこれをWCAGでカバーされていないアクセシビリティ課題と認識しています。',
-    'IMEで文字変換を行うユーザー、つまり少なくとも日本人は大変困るのです。',
+    'IMEで文字変換を行うユーザー、',
+    'つまり少なくとも日本人は大変困るのです。',
     '全員です！1億2千万人です！'
   ]"
 />
@@ -187,6 +189,11 @@ document.addEventListener("keydown", (event) => {
 
 ---
 
+<script setup lang="ts">
+import { useIsVideo } from "./composables/useIsVideo";
+const { isVideo } = useIsVideo();
+</script>
+
 <VH level="h1">
 <template #en>IME DEMO</template>
 <template #ja>IMEのデモ</template>
@@ -195,14 +202,56 @@ document.addEventListener("keydown", (event) => {
 <ShowKeyInput class="absolute right-4 top-4"/>
 
 <div class="flex h-63 items-center">
-<input class="border-2 border-black text-7xl w-full p-4" @keydown.meta.right="(e) => { $nav.next() }" @keydown.meta.left="(e) => { $nav.prev() }" />
+<VSwitch at="2" v-if="isVideo">
+<template #1>
+<SlidevVideo autoplay autoreset="click" loop controls>
+  <source src="/demo1-1.mp4" type="video/mp4" />
+</SlidevVideo>
+</template>
+<template #2>
+<SlidevVideo autoplay autoreset="click" loop controls>
+  <source src="/demo1-2.mp4" type="video/mp4" />
+</SlidevVideo>
+</template>
+<template #3>
+<SlidevVideo autoplay autoreset="click" loop controls>
+  <source src="/demo1-3.mp4" type="video/mp4" />
+</SlidevVideo>
+</template>
+<template #4>
+<SlidevVideo autoplay autoreset="click" loop controls>
+  <source src="/demo1-4.mp4" type="video/mp4" />
+</SlidevVideo>
+</template>
+<template #5>
+<SlidevVideo autoplay autoreset="click" loop controls>
+  <source src="/demo1-5.mp4" type="video/mp4" />
+</SlidevVideo>
+</template>
+<template #6>
+<SlidevVideo autoplay autoreset="click" loop controls>
+  <source src="/demo1-6.mp4" type="video/mp4" />
+</SlidevVideo>
+</template>
+<template #7>
+<SlidevVideo autoplay autoreset="click" loop controls>
+  <source src="/demo1-7.mp4" type="video/mp4" />
+</SlidevVideo>
+</template>
+</VSwitch>
+
+<input v-else class="border-2 border-black text-7xl w-full p-4" @keydown.meta.right="(e) => { $nav.next() }" @keydown.meta.left="(e) => { $nav.prev() }" />
+
 </div>
+
+<IsVideo />
 
 ::captions::
 
 <VCaptions
 at="1"
 :en-captions="[
+'Let\'s see how it actually works.',
 'When you type &quot;hashi&quot;, hiragana characters appear incrementally.',
 'Pressing the Space key converts the text to kanji.',
 'Press it again to open the candidate list and navigate through the options.',
@@ -213,6 +262,7 @@ at="1"
 'That\'s basically how it works.'
 ]"
 :ja-captions="[
+  '実際の操作を見てみましょう。',
 'hashiといれると、随時ひらがなが表示されます。',
 'スペースキーを押すと、漢字に変換されます。',
 'もう一度押すと、候補の一覧が出て、どんどん移動できます。',
@@ -378,6 +428,11 @@ const { primaryLang } = usePrimaryLang();
 
 ---
 
+<script setup lang="ts">
+import { useIsVideo } from "./composables/useIsVideo";
+const { isVideo } = useIsVideo();
+</script>
+
 <VH level="h1" class="mb-2!">
 <template #en>Bad DEMO</template>
 <template #ja>悪いデモ</template>
@@ -386,7 +441,24 @@ const { primaryLang } = usePrimaryLang();
 1. Input "<ruby>要素<rt>youso</rt>と<rt>to</rt>属性<rt>zokusei</rt></ruby>" (means "elements and attributes")
 2. Hit <kbd>Enter</kbd> to submit
 
-<VFormKeydown class="my-4 flex justify-center" type="bad" />
+<VSwitch at="1" v-if="isVideo">
+<template #1-3>
+<SlidevVideo >
+  <source src="/demo2-1.mp4" type="video/mp4" />
+</SlidevVideo>
+</template>
+<template #3>
+<SlidevVideo autoplay loop controls >
+  <source src="/demo2-2.mp4" type="video/mp4" />
+</SlidevVideo>
+</template>
+<template #4-7>
+<SlidevVideo autoplay loop controls>
+  <source src="/demo2-3.mp4" type="video/mp4" />
+</SlidevVideo>
+</template>
+</VSwitch>
+<VFormKeydown v-else class="my-4 flex justify-center" type="bad" />
 
 <div class="[&_pre]:text-4!">
 
@@ -399,6 +471,8 @@ inputElement.addEventListener("keydown", (event) => {
 ```
 
 </div>
+
+<IsVideo />
 
 <ShowKeyInput class="absolute right-4 top-4"/>
 
@@ -612,6 +686,11 @@ document.addEventListener("keydown", (event) => {
 
 ---
 
+<script setup lang="ts">
+import { useIsVideo } from "./composables/useIsVideo";
+const { isVideo } = useIsVideo();
+</script>
+
 <VH level="h1" class="mb-2!">
 <template #en>Good DEMO</template>
 <template #ja>良いデモ</template>
@@ -620,7 +699,11 @@ document.addEventListener("keydown", (event) => {
 1. Input "<ruby>要素<rt>youso</rt>と<rt>to</rt>属性<rt>zokusei</rt></ruby>" (means "elements and attributes")
 2. Hit <kbd>Enter</kbd> to submit
 
-<VFormKeydown class="my-2 flex justify-center" type="good" />
+<SlidevVideo v-if="isVideo" autoplay loop controls class="border-1 border-black" v-click="3">
+  <source src="/demo3.mp4" type="video/mp4" />
+</SlidevVideo>
+
+<VFormKeydown v-else class="my-2 flex justify-center" type="good" />
 
 <div class="[&_pre]:text-3!">
 
@@ -636,6 +719,8 @@ inputElement.addEventListener("keydown", (event) => {
 ```
 
 </div>
+
+<IsVideo />
 
 <ShowKeyInput class="absolute right-4 top-4"/>
 
